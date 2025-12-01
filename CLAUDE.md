@@ -1,0 +1,2 @@
+- Harus menggunakan Larvale Boost MCP untuk setiap pengerjaan pada proyek ini.
+- Harus sesuai intruksi, jangan kerjakan jika tidak ada intruksi
