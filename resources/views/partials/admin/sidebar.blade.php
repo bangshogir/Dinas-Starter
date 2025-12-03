@@ -56,9 +56,9 @@
 
                     <!-- Menu Item Profil Dinas -->
                     <li>
-                        <a href="#"
-                            class="menu-item group {{ request()->is('admin/profil-dinas*') ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <svg class="{{ request()->is('admin/profil-dinas*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"
+                        <a href="{{ route('admin.profil-dinas') }}"
+                            class="menu-item group {{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <svg class="{{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -72,6 +72,7 @@
                         </a>
                     </li>
                     <!-- Menu Item Profil Dinas -->
+
                 </ul>
             </div>
         </nav>

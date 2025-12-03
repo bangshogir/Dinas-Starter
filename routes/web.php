@@ -67,6 +67,16 @@ Route::group(['middleware' => ['auth', 'role:Author|Admin|Super Admin']], functi
     Route::view('test/author', 'test.author')->name('test.author');
 });
 
+// Profil Dinas Routes
+Route::group(['middleware' => ['auth', 'permission:profil-dinas.read']], function () {
+    Route::get('admin/profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'index'])->name('admin.profil-dinas');
+});
+
+Route::group(['middleware' => ['auth', 'permission:profil-dinas.update']], function () {
+    Route::get('admin/profil-dinas/edit', [App\Http\Controllers\Admin\ProfilDinasController::class, 'edit'])->name('admin.profil-dinas.edit');
+    Route::put('admin/profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'update'])->name('admin.profil-dinas.update');
+});
+
 Route::view('admin-test', 'admin.dashboard');
 
 require __DIR__ . '/auth.php';
