@@ -9,15 +9,19 @@
                 <img class="hidden dark:block" src="/images/logo/logo-dark.svg" alt="Logo" />
             </span>
 
-            <img class="logo-icon" :class="sidebarToggle ? 'lg:block' : 'hidden'" src="/images/logo/logo-icon.svg"
-                alt="Logo" />
+            @php
+                $profil = \App\Models\ProfilDinas::first();
+            @endphp
+            <img class="logo-icon" :class="sidebarToggle ? 'lg:block' : 'hidden'"
+                src="{{ $profil && $profil->logo_tanpa_text ? asset('storage/' . $profil->logo_tanpa_text) : asset('images/logo/logo-icon.svg') }}"
+                alt="Logo" style="max-height: 32px; width: auto;" />
         </a>
     </div>
     <!-- SIDEBAR HEADER -->
 
     <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <!-- Sidebar Menu -->
-        <nav x-data="{selected: $persist('Dashboard')}">
+        <nav x-data="{selected: '{{ (request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*')) ? 'Articles' : (request()->routeIs('admin.dashboard') ? 'Dashboard' : '') }}' }">
             <!-- Menu Group -->
             <div>
                 <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-400">
@@ -73,7 +77,59 @@
                     </li>
                     <!-- Menu Item Profil Dinas -->
 
-                </ul>
+                    <!-- Menu Item Berita & Artikel -->
+                    <li>
+                        <a href="#"
+                            class="menu-item group {{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-active' : 'menu-item-inactive' }}"
+                            @click.prevent="selected = (selected === 'Articles' ? '' : 'Articles')">
+                            <svg class="{{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3 4C3 2.89543 3.89543 2 5 2H19C20.1046 2 21 2.89543 21 4V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V4ZM5 4H19V20H5V4ZM7 6H17V8H7V6ZM7 10H17V12H7V10ZM7 14H14V16H7V14Z"
+                                    fill="" />
+                            </svg>
+
+                            <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
+                                Berita & Artikel
+                            </span>
+
+                            <svg class="menu-item-arrow" :class="{ 'rotate-180': selected === 'Articles' }" width="20"
+                                height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+
+                        <!-- Dropdown Menu Start -->
+                        <div class="translate transform overflow-hidden"
+                            :class="(selected === 'Articles') ? 'block' : 'hidden'">
+                            <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9"
+                                :class="sidebarToggle ? 'lg:hidden' : 'flex'">
+                                <li>
+                                    <a href="{{ route('admin.articles.index') }}"
+                                        class="menu-dropdown-item group {{ request()->routeIs('admin.articles.index') ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive' }}">
+                                        Daftar Berita
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.articles.create') }}"
+                                        class="menu-dropdown-item group {{ request()->routeIs('admin.articles.create') ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive' }}">
+                                        Tambah Berita
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.article-categories.index') }}"
+                                        class="menu-dropdown-item group {{ request()->routeIs('admin.article-categories*') ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive' }}">
+                                        Kategori
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown Menu End -->
+                    </li>
+                    <!-- Menu Item Berita & Artikel -->
+
             </div>
         </nav>
         <!-- Sidebar Menu -->
