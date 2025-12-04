@@ -72,6 +72,18 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     });
 });
 
+// Profil Dinas Routes
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::middleware('permission:profil-dinas.read')->group(function () {
+        Route::get('profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'index'])->name('profil-dinas');
+    });
+    
+    Route::middleware('permission:profil-dinas.update')->group(function () {
+        Route::get('profil-dinas/edit', [App\Http\Controllers\Admin\ProfilDinasController::class, 'edit'])->name('profil-dinas.edit');
+        Route::put('profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'update'])->name('profil-dinas.update');
+    });
+});
+
 // Public Articles
 Route::prefix('articles')->name('articles.')->group(function () {
     Route::get('/', [App\Http\Controllers\Public\ArticleController::class, 'index'])->name('index');
@@ -93,52 +105,7 @@ Route::group(['middleware' => ['auth', 'role:Author|Admin|Super Admin']], functi
     Route::view('test/author', 'test.author')->name('test.author');
 });
 
-// Profil Dinas Routes
-Route::group(['middleware' => ['auth', 'permission:profil-dinas.read']], function () {
-    Route::get('admin/profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'index'])->name('admin.profil-dinas');
-});
-
-Route::group(['middleware' => ['auth', 'permission:profil-dinas.update']], function () {
-    Route::get('admin/profil-dinas/edit', [App\Http\Controllers\Admin\ProfilDinasController::class, 'edit'])->name('admin.profil-dinas.edit');
-    Route::put('admin/profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'update'])->name('admin.profil-dinas.update');
-});
-
 Route::view('admin-test', 'admin.dashboard');
 
-// Admin Articles Management
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    // Articles
-    Route::middleware('permission:articles.read')->prefix('articles')->name('articles.')->group(function () {
-        Route::get('/', [App\Http\Controllers\Admin\ArticleController::class, 'index'])->name('index');
-        Route::get('/create', [App\Http\Controllers\Admin\ArticleController::class, 'create'])->name('create')->middleware('permission:articles.create');
-        Route::post('/', [App\Http\Controllers\Admin\ArticleController::class, 'store'])->name('store')->middleware('permission:articles.create');
-        Route::get('/{article}', [App\Http\Controllers\Admin\ArticleController::class, 'show'])->name('show');
-        Route::get('/{article}/edit', [App\Http\Controllers\Admin\ArticleController::class, 'edit'])->name('edit')->middleware('permission:articles.update');
-        Route::put('/{article}', [App\Http\Controllers\Admin\ArticleController::class, 'update'])->name('update')->middleware('permission:articles.update');
-        Route::delete('/{article}', [App\Http\Controllers\Admin\ArticleController::class, 'destroy'])->name('destroy')->middleware('permission:articles.delete');
-        Route::post('/{article}/publish', [App\Http\Controllers\Admin\ArticleController::class, 'publish'])->name('publish')->middleware('permission:articles.update');
-        Route::post('/{article}/featured', [App\Http\Controllers\Admin\ArticleController::class, 'toggleFeatured'])->name('featured')->middleware('permission:articles.update');
-    });
-
-    // Article Categories
-    Route::middleware('permission:content.read')->prefix('article-categories')->name('article-categories.')->group(function () {
-        Route::get('/', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'index'])->name('index');
-        Route::get('/create', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'create'])->name('create')->middleware('permission:content.create');
-        Route::post('/', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'store'])->name('store')->middleware('permission:content.create');
-        Route::get('/{articleCategory}', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'show'])->name('show');
-        Route::get('/{articleCategory}/edit', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'edit'])->name('edit')->middleware('permission:content.update');
-        Route::put('/{articleCategory}', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'update'])->name('update')->middleware('permission:content.update');
-        Route::delete('/{articleCategory}', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'destroy'])->name('destroy')->middleware('permission:content.delete');
-        Route::post('/order', [App\Http\Controllers\Admin\ArticleCategoryController::class, 'updateOrder'])->name('order')->middleware('permission:content.update');
-    });
-});
-
-// Public Articles
-Route::prefix('articles')->name('articles.')->group(function () {
-    Route::get('/', [App\Http\Controllers\Public\ArticleController::class, 'index'])->name('index');
-    Route::get('/{article:slug}', [App\Http\Controllers\Public\ArticleController::class, 'show'])->name('show');
-    Route::get('/category/{category:slug}', [App\Http\Controllers\Public\ArticleController::class, 'category'])->name('category');
-    Route::get('/search', [App\Http\Controllers\Public\ArticleController::class, 'search'])->name('search');
-});
-
 require __DIR__ . '/auth.php';
+

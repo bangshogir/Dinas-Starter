@@ -36,22 +36,6 @@ class PermissionSeeder extends Seeder
             'permissions.delete'
         ];
 
-        // Create permissions for Articles Management
-        $articlePermissions = [
-            'articles.create',
-            'articles.read',
-            'articles.update',
-            'articles.delete'
-        ];
-
-        // Create permissions for Content Management
-        $contentPermissions = [
-            'content.create',
-            'content.read',
-            'content.update',
-            'content.delete'
-        ];
-
         // Create permissions for System Management
         $systemPermissions = [
             'system.manage',
@@ -64,14 +48,12 @@ class PermissionSeeder extends Seeder
             $userPermissions,
             $rolePermissions,
             $permissionManagementPermissions,
-            $articlePermissions,
-            $contentPermissions,
             $systemPermissions
         );
 
-        // Create all permissions
+        // Create all permissions (use firstOrCreate to avoid duplicates)
         foreach ($allPermissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission]);
         }
     }
 }

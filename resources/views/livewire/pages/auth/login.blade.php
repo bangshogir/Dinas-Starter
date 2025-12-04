@@ -25,6 +25,14 @@ new #[Layout('layouts.auth')] class extends Component {
 
 <div>
     <div class="mb-5 sm:mb-8">
+        @php
+            $profil = \App\Models\ProfilDinas::first();
+        @endphp
+        <div class="flex justify-center mb-6 lg:hidden">
+            <img src="{{ $profil && $profil->logo_tanpa_text ? asset('storage/' . $profil->logo_tanpa_text) : asset('images/logo/logo-icon.svg') }}"
+                alt="Logo" class="h-16 w-auto" />
+        </div>
+
         <h1 class="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
             Sign In
         </h1>
