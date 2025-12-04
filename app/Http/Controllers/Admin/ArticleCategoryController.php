@@ -18,10 +18,21 @@ class ArticleCategoryController extends Controller
         $this->middleware('permission:content.delete')->only(['destroy']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = ArticleCategory::with(['parent', 'children', 'articles'])
-            ->orderBy('sort_order')
+        $query = ArticleCategory::with(['parent', 'children', 'articles']);
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('slug', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        $categories = $query->orderBy('sort_order')
             ->orderBy('name')
             ->get();
 
@@ -78,9 +89,9 @@ class ArticleCategoryController extends Controller
         $parentCategories = ArticleCategory::parentCategories()
             ->active()
             ->where('id', '!=', $articleCategory->id)
-            ->where(function($query) use ($articleCategory) {
+            ->where(function ($query) use ($articleCategory) {
                 $query->where('parent_id', '!=', $articleCategory->id)
-                      ->orWhereNull('parent_id');
+                    ->orWhereNull('parent_id');
             })
             ->ordered()
             ->get();

@@ -113,8 +113,6 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        $this->authorize('update', $article);
-
         $categories = ArticleCategory::active()->ordered()->get();
         return view('admin.articles.edit', compact('article', 'categories'));
     }

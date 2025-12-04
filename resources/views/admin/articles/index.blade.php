@@ -185,15 +185,15 @@
                                         <span class="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
                                             {{ Str::limit($article->title, 40) }}
                                         </span>
-                                        <span class="block text-gray-500 text-theme-xs dark:text-gray-400">
+                                        <!-- <span class="block text-gray-500 text-theme-xs dark:text-gray-400">
                                             {{ Str::limit($article->excerpt, 50) }}
-                                        </span>
-                                        @if($article->is_featured)
+                                        </span> -->
+                                        <!-- @if($article->is_featured)
                                             <span
                                                 class="mt-1 inline-flex items-center gap-1 rounded-full bg-warning-50 px-2 py-0.5 text-[10px] font-medium text-warning-600 dark:bg-warning-500/15 dark:text-warning-500">
                                                 Featured
                                             </span>
-                                        @endif
+                                        @endif -->
                                     </div>
                                 </div>
                             </td>

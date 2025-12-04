@@ -3,18 +3,25 @@
     <!-- SIDEBAR HEADER -->
     <div :class="sidebarToggle ? 'justify-center' : 'justify-between'"
         class="flex items-center gap-2 pt-8 sidebar-header pb-7">
+        @php
+            $profil = \App\Models\ProfilDinas::first();
+        @endphp
         <a href="{{ route('admin.dashboard') }}">
+            {{-- Logo dengan text (saat sidebar expanded) --}}
             <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
-                <img class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" />
-                <img class="hidden dark:block" src="/images/logo/logo-dark.svg" alt="Logo" />
+                @if($profil && $profil->logo_dengan_text)
+                    <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}" alt="{{ $profil->nama_dinas ?? 'Logo' }}"
+                        class="h-16 object-contain" />
+                @else
+                    <img class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" />
+                    <img class="hidden dark:block" src="/images/logo/logo-dark.svg" alt="Logo" />
+                @endif
             </span>
 
-            @php
-                $profil = \App\Models\ProfilDinas::first();
-            @endphp
-            <img class="logo-icon" :class="sidebarToggle ? 'lg:block' : 'hidden'"
+            {{-- Logo tanpa text / icon (saat sidebar collapsed) --}}
+            <img class="logo-icon h-10 object-contain" :class="sidebarToggle ? 'lg:block' : 'hidden'"
                 src="{{ $profil && $profil->logo_tanpa_text ? asset('storage/' . $profil->logo_tanpa_text) : asset('images/logo/logo-icon.svg') }}"
-                alt="Logo" style="max-height: 32px; width: auto;" />
+                alt="{{ $profil->nama_dinas ?? 'Logo' }}" />
         </a>
     </div>
     <!-- SIDEBAR HEADER -->
@@ -44,9 +51,8 @@
                     <li>
                         <a href="{{ route('admin.dashboard') }}"
                             class="menu-item group {{ request()->routeIs('admin.dashboard') ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <x-heroicon-o-squares-2x2 
-                                class="w-6 h-6 {{ request()->routeIs('admin.dashboard') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" 
-                            />
+                            <x-heroicon-o-squares-2x2
+                                class="w-6 h-6 {{ request()->routeIs('admin.dashboard') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Dashboard
@@ -59,9 +65,8 @@
                     <li>
                         <a href="{{ route('admin.profil-dinas') }}"
                             class="menu-item group {{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <x-heroicon-o-building-office-2 
-                                class="w-6 h-6 {{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" 
-                            />
+                            <x-heroicon-o-building-office-2
+                                class="w-6 h-6 {{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Profil Dinas
@@ -75,15 +80,15 @@
                         <a href="#"
                             class="menu-item group {{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-active' : 'menu-item-inactive' }}"
                             @click.prevent="selected = (selected === 'Articles' ? '' : 'Articles')">
-                            <x-heroicon-o-newspaper 
-                                class="w-6 h-6 {{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" 
-                            />
+                            <x-heroicon-o-newspaper
+                                class="w-6 h-6 {{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Berita & Artikel
                             </span>
 
-                            <svg class="menu-item-arrow w-5 h-5" :class="{ 'rotate-180': selected === 'Articles' }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <svg class="menu-item-arrow w-5 h-5" :class="{ 'rotate-180': selected === 'Articles' }"
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
                         </a>
