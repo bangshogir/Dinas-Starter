@@ -1,11 +1,11 @@
 <x-public-layout>
     <!-- Hero Section -->
-    <section class="relative bg-blue-900 overflow-hidden">
+    <section class="relative bg-dinas-primary overflow-hidden">
         <!-- Background Image & Overlay -->
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1577017040065-650ee4d43339?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                 alt="Background" class="w-full h-full object-cover opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/70"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-dinas-primary/90 to-blue-800/70"></div>
         </div>
 
         <!-- Content -->
@@ -28,7 +28,7 @@
             </p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 <a href="#services"
-                    class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-blue-900 rounded-full bg-white hover:bg-blue-50 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                    class="inline-flex justify-center items-center py-4 px-8 text-lg font-bold text-center text-dinas-primary rounded-full bg-white hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
                     Layanan Kami
                     <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 14 10">
@@ -37,7 +37,7 @@
                     </svg>
                 </a>
                 <a href="#news"
-                    class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-white rounded-full border-2 border-white/30 hover:bg-white/10 focus:ring-4 focus:ring-gray-400 backdrop-blur-sm transition-all transform hover:-translate-y-1">
+                    class="inline-flex justify-center items-center py-4 px-8 text-lg font-bold text-center text-white rounded-full border-2 border-white/30 bg-white/10 hover:bg-white/20 focus:ring-4 focus:ring-gray-400 backdrop-blur-sm transition-all transform hover:-translate-y-0.5">
                     Berita Terkini
                 </a>
             </div>
@@ -58,7 +58,7 @@
     <section id="services" class="bg-gray-50 dark:bg-gray-900 py-20 lg:py-28 relative">
         <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
             <div class="max-w-screen-md mb-12 lg:mb-20 mx-auto text-center">
-                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">Layanan Unggulan</span>
+                <span class="text-dinas-primary font-bold tracking-wider uppercase text-sm">Layanan Unggulan</span>
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mt-2">Layanan
                     Publik Terpadu</h2>
                 <p class="text-gray-500 sm:text-xl dark:text-gray-400">Kami menghadirkan inovasi layanan digital untuk
@@ -81,12 +81,12 @@
                         </svg>
                     </div>
                     <h3
-                        class="mb-3 text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                        class="mb-3 text-2xl font-bold text-gray-900 dark:text-white group-hover:text-dinas-primary transition-colors">
                         Perizinan Online</h3>
                     <p class="text-gray-500 dark:text-gray-400 mb-4 leading-relaxed">Ajukan perizinan usaha (SIUP, TDP)
                         dan IMB secara online. Pantau status pengajuan real-time.</p>
                     <a href="#"
-                        class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors">
+                        class="inline-flex items-center text-dinas-primary font-semibold hover:text-blue-800 transition-colors">
                         Akses Layanan <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -249,7 +249,7 @@
             </div>
 
             <div class="text-center">
-                <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                <a href="#" class="text-dinas-primary hover:text-blue-800 font-medium inline-flex items-center">
                     Lihat Semua Harga Komoditas
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -271,7 +271,7 @@
                         dan kebijakan pemerintah.</p>
                 </div>
                 <a href="#"
-                    class="hidden md:inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 transition-colors">
+                    class="hidden md:inline-flex items-center justify-center px-6 py-3 text-base font-medium text-center text-white bg-dinas-primary rounded-full hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
                     Lihat Semua Berita
                 </a>
             </div>
@@ -286,9 +286,9 @@
                                     class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                             @else
                                 <div
-                                    class="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-gray-800 flex items-center justify-center">
-                                    <svg class="w-12 h-12 text-blue-300 dark:text-blue-700" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
+                                    class="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-dinas-primary dark:to-gray-800 flex items-center justify-center">
+                                    <svg class="w-12 h-12 text-blue-300 dark:text-dinas-primary" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
                                         </path>
@@ -315,7 +315,7 @@
                                 </span>
                             </div>
                             <h2
-                                class="mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white line-clamp-2 hover:text-blue-600 transition-colors">
+                                class="mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white line-clamp-2 hover:text-dinas-primary transition-colors">
                                 <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
                             </h2>
                             <p class="mb-4 font-light text-gray-500 dark:text-gray-400 line-clamp-3 text-sm flex-1">
@@ -333,7 +333,7 @@
                                     </span>
                                 </div>
                                 <a href="{{ route('articles.show', $article->slug) }}"
-                                    class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:text-blue-800 text-sm">
+                                    class="inline-flex items-center font-medium text-dinas-primary dark:text-blue-500 hover:text-blue-800 text-sm">
                                     Baca
                                     <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -358,7 +358,7 @@
             </div>
             <div class="mt-8 text-center md:hidden">
                 <a href="#"
-                    class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 transition-colors w-full">
+                    class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-center text-white bg-dinas-primary rounded-full hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 w-full">
                     Lihat Semua Berita
                 </a>
             </div>
@@ -366,7 +366,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section id="stats" class="bg-blue-900 py-20 relative overflow-hidden">
+    <section id="stats" class="bg-dinas-primary py-20 relative overflow-hidden">
         <!-- Decorative Background -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-10">
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
@@ -383,17 +383,17 @@
             <dl class="grid max-w-screen-md gap-8 mx-auto text-white sm:grid-cols-3">
                 <div
                     class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10">
-                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-amber-400">98%</dt>
+                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary">98%</dt>
                     <dd class="font-light text-blue-100">Kepuasan Masyarakat</dd>
                 </div>
                 <div
                     class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10">
-                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-amber-400">100+</dt>
+                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary">100+</dt>
                     <dd class="font-light text-blue-100">Proyek Selesai</dd>
                 </div>
                 <div
                     class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10">
-                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-amber-400">24/7</dt>
+                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary">24/7</dt>
                     <dd class="font-light text-blue-100">Layanan Online</dd>
                 </div>
             </dl>

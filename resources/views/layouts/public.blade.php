@@ -50,7 +50,7 @@
                     <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}" class="h-16 w-auto object-contain"
                         alt="{{ $profil->nama_dinas }}">
                 @else
-                    <div class="bg-blue-700 text-white p-1.5 rounded-lg group-hover:bg-blue-600 transition-colors">
+                    <div class="bg-dinas-primary text-white p-1.5 rounded-lg group-hover:bg-blue-600 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -81,10 +81,10 @@
 
                 @auth
                     <a href="{{ route('admin.dashboard') }}"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 shadow-lg shadow-blue-700/30 transition-all hover:shadow-blue-700/50">Dashboard</a>
+                        class="text-white bg-dinas-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-900 font-medium rounded-full text-sm px-5 py-2.5 text-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 shadow-lg shadow-blue-700/30 transition-all hover:shadow-blue-700/50">Login</a>
+                        class="text-white bg-dinas-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-900 font-medium rounded-full text-sm px-5 py-2.5 text-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">Login</a>
                 @endauth
                 <button data-collapse-toggle="navbar-sticky" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -102,25 +102,25 @@
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
                     <li>
                         <a href="{{ url('/') }}"
-                            class="block py-2 px-3 text-blue-700 bg-transparent md:p-0 md:dark:text-blue-500 font-bold"
+                            class="block py-2 px-3 text-dinas-primary bg-transparent md:p-0 md:dark:text-blue-500 font-bold"
                             aria-current="page">Beranda</a>
                     </li>
                     <li>
                         <a href="#services"
-                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Layanan</a>
+                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Layanan</a>
                     </li>
                     <li>
                         <a href="#prices"
-                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Harga
+                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Harga
                             Pasar</a>
                     </li>
                     <li>
                         <a href="#news"
-                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Berita</a>
+                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Berita</a>
                     </li>
                     <li>
                         <a href="#stats"
-                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Data</a>
+                            class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Data</a>
                     </li>
                 </ul>
             </div>
@@ -142,7 +142,7 @@
                             <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}"
                                 class="h-16 w-auto object-contain" alt="{{ $profil->nama_dinas }}">
                         @else
-                            <div class="bg-blue-700 text-white p-1.5 rounded-lg mr-3">
+                            <div class="bg-dinas-primary text-white p-1.5 rounded-lg mr-3">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -172,16 +172,16 @@
                         <ul class="text-gray-600 dark:text-gray-400 font-medium space-y-3">
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Perizinan
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Perizinan
                                     Online</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Kependudukan</a>
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Kependudukan</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Pengaduan</a>
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Pengaduan</a>
                             </li>
                         </ul>
                     </div>
@@ -191,16 +191,16 @@
                         <ul class="text-gray-600 dark:text-gray-400 font-medium space-y-3">
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Berita
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Berita
                                     Terkini</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Pengumuman</a>
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Pengumuman</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Transparansi
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Transparansi
                                     Anggaran</a>
                             </li>
                         </ul>
@@ -211,17 +211,17 @@
                         <ul class="text-gray-600 dark:text-gray-400 font-medium space-y-3">
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Hubungi
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Hubungi
                                     Kami</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">Lokasi
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">Lokasi
                                     Kantor</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="hover:text-blue-700 dark:hover:text-blue-500 transition-colors">FAQ</a>
+                                    class="hover:text-dinas-primary dark:hover:text-blue-500 transition-colors">FAQ</a>
                             </li>
                         </ul>
                     </div>
@@ -235,7 +235,7 @@
                     All Rights Reserved.
                 </span>
                 <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-5">
-                    <a href="#" class="text-gray-400 hover:text-blue-700 dark:hover:text-white transition-colors">
+                    <a href="#" class="text-gray-400 hover:text-dinas-primary dark:hover:text-white transition-colors">
                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 8 19">
                             <path fill-rule="evenodd"

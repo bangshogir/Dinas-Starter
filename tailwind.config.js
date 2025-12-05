@@ -15,6 +15,10 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'dinas-primary': '#1e3a8a', // blue-900
+                'dinas-secondary': '#d97706', // amber-600
+            },
         },
     },
 
