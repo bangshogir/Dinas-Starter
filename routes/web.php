@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::get('/', function () {
+    $latestArticles = \App\Models\Article::with(['category', 'author'])
+        ->published()
+        ->latest('published_at')
+        ->take(3)
+        ->get();
+
+    return view('welcome', compact('latestArticles'));
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -77,7 +85,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::middleware('permission:profil-dinas.read')->group(function () {
         Route::get('profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'index'])->name('profil-dinas');
     });
-    
+
     Route::middleware('permission:profil-dinas.update')->group(function () {
         Route::get('profil-dinas/edit', [App\Http\Controllers\Admin\ProfilDinasController::class, 'edit'])->name('profil-dinas.edit');
         Route::put('profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'update'])->name('profil-dinas.update');
