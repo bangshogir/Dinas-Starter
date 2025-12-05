@@ -8,6 +8,7 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     @vite(['resources/js/admin/index.js'])
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body
@@ -38,6 +39,7 @@
         </div>
     </div>
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

@@ -19,12 +19,7 @@
 
         <a href="{{ route('admin.article-categories.index') }}"
             class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] sm:w-auto">
-            <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M11.0203 3.51583C11.1996 3.33653 11.2761 3.0788 11.2238 2.8307C11.1714 2.5826 11.0026 2.37048 10.7601 2.27996C10.5176 2.18944 10.2483 2.23846 10.0518 2.40905L3.42681 8.15905C3.16006 8.39054 3.00003 8.7366 3.00003 9.10006C3.00003 9.46352 3.16006 9.80959 3.42681 10.0411L10.0518 15.7911C10.2483 15.9617 10.5176 16.0107 10.7601 15.9202C11.0026 15.8296 11.1714 15.6175 11.2238 15.3694C11.2761 15.1213 11.1996 14.8636 11.0203 14.6843L5.47163 9.86881L14.25 9.86881C14.6642 9.86881 15 9.53302 15 9.11881C15 8.7046 14.6642 8.36881 14.25 8.36881L5.47163 8.36881L11.0203 3.51583Z"
-                    fill="" />
-            </svg>
+            <x-heroicon-o-arrow-left class="w-5 h-5" />
             Kembali
         </a>
     </div>
@@ -40,62 +35,61 @@
 
                     <!-- Name -->
                     <div class="mb-4">
-                        <label class="mb-2.5 block font-medium text-gray-700 dark:text-gray-400">
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                             Nama Kategori <span class="text-error-500">*</span>
                         </label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}" required
-                            class="w-full rounded-lg border border-gray-300 bg-transparent px-5 py-3 text-gray-800 outline-none focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"
+                            class="shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                             placeholder="Masukkan nama kategori" />
                         @error('name')
-                            <p class="mt-1 text-sm text-error-500">{{ $message }}</p>
+                            <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- Slug -->
                     <div class="mb-4">
-                        <label class="mb-2.5 block font-medium text-gray-700 dark:text-gray-400">
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                             Slug
                         </label>
                         <div class="relative">
                             <input type="text" name="slug" id="slug" value="{{ old('slug') }}"
-                                class="w-full rounded-lg border border-gray-300 bg-gray-50 px-5 py-3 text-gray-800 outline-none focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"
+                                class="shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 pr-12 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                                 placeholder="slug-kategori-otomatis" />
                             <button type="button" onclick="generateSlug()"
-                                class="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-2 text-gray-500 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-800">
-                                <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16.875 10C16.875 13.797 13.797 16.875 10 16.875C6.20304 16.875 3.125 13.797 3.125 10C3.125 6.20304 6.20304 3.125 10 3.125C11.6684 3.125 13.1965 3.71966 14.4042 4.71696L14.8839 5.11304L13.7768 6.45371L13.2971 6.05763C12.3789 5.29944 11.229 4.84375 10 4.84375C7.15228 4.84375 4.84375 7.15228 4.84375 10C4.84375 12.8477 7.15228 15.1562 10 15.1562C12.8477 15.1562 15.1562 12.8477 15.1562 10H16.875ZM15.3125 5.625V1.25H17.0312V7.34375H10.9375V5.625H15.3125Z"
-                                        fill="" />
-                                </svg>
+                                class="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-gray-500 hover:bg-gray-200 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-colors"
+                                title="Generate slug dari nama kategori">
+                                <x-heroicon-o-arrow-path class="w-5 h-5" />
                             </button>
                         </div>
+                        <p class="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
+                            Slug akan otomatis dibuat dari nama kategori. Klik icon untuk regenerate.
+                        </p>
                         @error('slug')
-                            <p class="mt-1 text-sm text-error-500">{{ $message }}</p>
+                            <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- Description -->
                     <div class="mb-4">
-                        <label class="mb-2.5 block font-medium text-gray-700 dark:text-gray-400">
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                             Deskripsi
                         </label>
                         <textarea name="description" rows="5"
-                            class="w-full rounded-lg border border-gray-300 bg-transparent px-5 py-3 text-gray-800 outline-none focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"
+                            class="shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                             placeholder="Deskripsi singkat kategori...">{{ old('description') }}</textarea>
                         @error('description')
-                            <p class="mt-1 text-sm text-error-500">{{ $message }}</p>
+                            <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- Parent Category -->
                     <div class="mb-4">
-                        <label class="mb-2.5 block font-medium text-gray-700 dark:text-gray-400">
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                             Kategori Induk
                         </label>
                         <div class="relative z-20 bg-transparent dark:bg-dark-900">
                             <select name="parent_id" id="parent_id"
-                                class="relative z-20 w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-5 py-3 text-gray-800 outline-none focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800">
+                                class="shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 relative z-20 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90">
                                 <option value="">Tidak Ada (Kategori Utama)</option>
                                 @foreach($parentCategories as $parent)
                                     <option value="{{ $parent->id }}" {{ old('parent_id') == $parent->id ? 'selected' : '' }}>
@@ -103,17 +97,12 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
-                                <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M8.99922 12.8249C8.83047 12.8249 8.68984 12.7687 8.54922 12.6562L2.08047 6.2999C1.82734 6.04678 1.82734 5.65303 2.08047 5.3999C2.33359 5.14678 2.72734 5.14678 2.98047 5.3999L8.99922 11.278L15.018 5.3999C15.2711 5.14678 15.6648 5.14678 15.918 5.3999C16.1711 5.65303 16.1711 6.04678 15.918 6.2999L9.44922 12.6562C9.30859 12.7687 9.16797 12.8249 8.99922 12.8249Z"
-                                        fill="" />
-                                </svg>
+                            <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2 pointer-events-none">
+                                <x-heroicon-o-chevron-down class="w-5 h-5 text-gray-500 dark:text-gray-400" />
                             </span>
                         </div>
                         @error('parent_id')
-                            <p class="mt-1 text-sm text-error-500">{{ $message }}</p>
+                            <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -142,25 +131,20 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="mb-2.5 block font-medium text-gray-700 dark:text-gray-400">
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                             Urutan
                         </label>
                         <input type="number" name="sort_order" value="{{ old('sort_order') }}" min="0" step="1"
-                            class="w-full rounded-lg border border-gray-300 bg-transparent px-5 py-3 text-gray-800 outline-none focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"
+                            class="shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                             placeholder="0" />
                         @error('sort_order')
-                            <p class="mt-1 text-sm text-error-500">{{ $message }}</p>
+                            <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <button type="submit"
                         class="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-medium text-white shadow-theme-xs hover:bg-brand-600">
-                        <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M13.7535 2.47502H11.5879V4.9969H13.7535V2.47502ZM4.85773 13.6323H5.50685L12.2166 6.92255L11.5675 6.27345L4.85773 12.9832V13.6323ZM13.3289 0.912537H11.5879H10.2512C9.71618 0.912537 9.28125 1.34747 9.28125 1.8825V3.83376L3.62823 9.48677C3.36197 9.75303 3.2124 10.1141 3.2124 10.4906V14.2344C3.2124 14.7694 3.64734 15.2044 4.18237 15.2044H7.92613C8.30266 15.2044 8.66373 15.0548 8.93 14.7885L14.583 9.13549V11.1019C14.583 11.6369 15.018 12.0719 15.553 12.0719C16.088 12.0719 16.523 11.6369 16.523 11.1019V2.47502C16.523 1.61252 15.823 0.912537 14.9605 0.912537H13.3289Z"
-                                fill="" />
-                        </svg>
+                        <x-heroicon-o-check class="w-5 h-5" />
                         Simpan Kategori
                     </button>
                 </div>
@@ -208,7 +192,7 @@
             const name = document.getElementById('name').value;
             const slugField = document.getElementById('slug');
 
-            if (name && !slugField.value) {
+            if (name) {
                 const slug = name.toLowerCase()
                     .replace(/[^a-z0-9\s-]/g, '')
                     .replace(/\s+/g, '-')
@@ -242,15 +226,21 @@
             const urlPreview = document.getElementById('url_preview');
             navigator.clipboard.writeText(urlPreview.value).then(function () {
                 alert('URL berhasil disalin!');
+            }, function() {
+                // Fallback for older browsers
+                urlPreview.select();
+                document.execCommand('copy');
+                alert('URL berhasil disalin!');
             });
         }
 
-        // Event listeners
+        // Auto-generate slug on name input with debounce
+        let slugTimeout;
         document.getElementById('name').addEventListener('input', function () {
-            if (!document.getElementById('slug').value) {
+            clearTimeout(slugTimeout);
+            slugTimeout = setTimeout(function() {
                 generateSlug();
-            }
-            updatePreview();
+            }, 500);
         });
 
         document.getElementById('slug').addEventListener('input', updatePreview);
