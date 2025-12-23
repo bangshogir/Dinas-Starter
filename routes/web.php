@@ -9,7 +9,9 @@ Route::get('/', function () {
         ->take(3)
         ->get();
 
-    return view('welcome', compact('latestArticles'));
+    $marketPrices = \App\Models\MarketPrice::all();
+
+    return view('welcome', compact('latestArticles', 'marketPrices'));
 });
 
 Route::view('dashboard', 'dashboard')
@@ -89,6 +91,17 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::middleware('permission:profil-dinas.update')->group(function () {
         Route::get('profil-dinas/edit', [App\Http\Controllers\Admin\ProfilDinasController::class, 'edit'])->name('profil-dinas.edit');
         Route::put('profil-dinas', [App\Http\Controllers\Admin\ProfilDinasController::class, 'update'])->name('profil-dinas.update');
+    });
+
+    // Market Prices Routes
+    // Using profil-dinas permissions temporarily for simplicity unless new permissions are requested
+    Route::middleware('permission:profil-dinas.update')->group(function () {
+        Route::get('market-prices', [App\Http\Controllers\Admin\MarketPriceController::class, 'index'])->name('market-prices.index');
+        Route::get('market-prices/create', [App\Http\Controllers\Admin\MarketPriceController::class, 'create'])->name('market-prices.create');
+        Route::post('market-prices', [App\Http\Controllers\Admin\MarketPriceController::class, 'store'])->name('market-prices.store');
+        Route::get('market-prices/{marketPrice}/edit', [App\Http\Controllers\Admin\MarketPriceController::class, 'edit'])->name('market-prices.edit');
+        Route::put('market-prices/{marketPrice}', [App\Http\Controllers\Admin\MarketPriceController::class, 'update'])->name('market-prices.update');
+        Route::delete('market-prices/{marketPrice}', [App\Http\Controllers\Admin\MarketPriceController::class, 'destroy'])->name('market-prices.destroy');
     });
 });
 

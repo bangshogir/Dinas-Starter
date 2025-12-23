@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ArticlePermissionSeeder::class,
             ProfilDinasPermissionSeeder::class,
             UserWithRoleSeeder::class,
+            MarketPriceSeeder::class,
         ]);
     }
 }

@@ -284,82 +284,50 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                <!-- Price Card 1 -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Beras Premium</p>
-                        <h4 class="text-2xl font-bold text-gray-900 dark:text-white">Rp 15.000</h4>
-                        <p class="text-xs text-gray-400 mt-1">per Kg</p>
+                @forelse($marketPrices as $price)
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">{{ $price->commodity_name }}</p>
+                            <h4 class="text-2xl font-bold text-gray-900 dark:text-white">Rp
+                                {{ number_format($price->price, 0, ',', '.') }}
+                            </h4>
+                            <p class="text-xs text-gray-400 mt-1">per {{ $price->unit }}</p>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            @if ($price->trend_status == 'naik')
+                                <span
+                                    class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300 flex items-center">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                                    </svg>
+                                    +{{ $price->trend_percentage }}%
+                                </span>
+                            @elseif($price->trend_status == 'turun')
+                                <span
+                                    class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 flex items-center">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                    </svg>
+                                    -{{ $price->trend_percentage }}%
+                                </span>
+                            @else
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 flex items-center">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                                    </svg>
+                                    Stabil
+                                </span>
+                            @endif
+                        </div>
                     </div>
-                    <div class="flex flex-col items-end">
-                        <span
-                            class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 flex items-center">
-                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-                            </svg>
-                            Stabil
-                        </span>
-                    </div>
-                </div>
-                <!-- Price Card 2 -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Daging Sapi</p>
-                        <h4 class="text-2xl font-bold text-gray-900 dark:text-white">Rp 120.000</h4>
-                        <p class="text-xs text-gray-400 mt-1">per Kg</p>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <span
-                            class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300 flex items-center">
-                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                            </svg>
-                            -2%
-                        </span>
-                    </div>
-                </div>
-                <!-- Price Card 3 -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Cabai Merah</p>
-                        <h4 class="text-2xl font-bold text-gray-900 dark:text-white">Rp 45.000</h4>
-                        <p class="text-xs text-gray-400 mt-1">per Kg</p>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <span
-                            class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300 flex items-center">
-                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-                            </svg>
-                            +5%
-                        </span>
-                    </div>
-                </div>
-                <!-- Price Card 4 -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Minyak Goreng</p>
-                        <h4 class="text-2xl font-bold text-gray-900 dark:text-white">Rp 14.000</h4>
-                        <p class="text-xs text-gray-400 mt-1">per Liter</p>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <span
-                            class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 flex items-center">
-                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-                            </svg>
-                            Stabil
-                        </span>
-                    </div>
-                </div>
+                @empty
+                    <div class="col-span-full text-center text-gray-500">Belum ada data harga pasar.</div>
+                @endforelse
             </div>
 
             <div class="text-center">

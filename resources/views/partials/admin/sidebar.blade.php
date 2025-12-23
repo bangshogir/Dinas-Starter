@@ -75,6 +75,20 @@
                     </li>
                     <!-- Menu Item Profil Dinas -->
 
+                    <!-- Menu Item Harga Pasar -->
+                    <li>
+                        <a href="{{ route('admin.market-prices.index') }}"
+                            class="menu-item group {{ request()->routeIs('admin.market-prices*') ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <x-heroicon-o-currency-dollar
+                                class="w-6 h-6 {{ request()->routeIs('admin.market-prices*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
+
+                            <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
+                                Harga Pasar
+                            </span>
+                        </a>
+                    </li>
+                    <!-- Menu Item Harga Pasar -->
+
                     <!-- Menu Item Berita & Artikel -->
                     <li>
                         <a href="#"
