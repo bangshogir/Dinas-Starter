@@ -17,10 +17,8 @@
 
     <style>
         .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .dark .glass-nav {
@@ -43,12 +41,14 @@
     class="font-sans antialiased text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 start-0 glass-nav transition-all duration-300">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse group">
+    <nav class="sticky w-full z-50 top-0 start-0 transition-all duration-300" x-data="{ scrolled: false }"
+        x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })"
+        :class="scrolled ? 'glass-nav shadow-lg' : 'bg-transparent'">
+        <div class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4">
+            <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse group shrink-0">
                 @if(isset($profil) && $profil->logo_dengan_text)
-                    <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}" class="h-16 w-auto object-contain"
-                        alt="{{ $profil->nama_dinas }}">
+                    <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}"
+                        class="h-12 md:h-16 w-auto object-contain" alt="{{ $profil->nama_dinas }}">
                 @else
                     <div class="bg-dinas-primary text-white p-1.5 rounded-lg group-hover:bg-blue-600 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"

@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        try {
+            $profil = \App\Models\ProfilDinas::first();
+            \Illuminate\Support\Facades\View::share('profil', $profil);
+        } catch (\Exception $e) {
+            // Handle case where table might not exist yet (e.g. during migration)
+        }
     }
 }

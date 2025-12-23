@@ -1,56 +1,127 @@
 <x-public-layout>
-    <!-- Hero Section -->
-    <section class="relative bg-dinas-primary overflow-hidden">
-        <!-- Background Image & Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1577017040065-650ee4d43339?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt="Background" class="w-full h-full object-cover opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-r from-dinas-primary/90 to-blue-800/70"></div>
-        </div>
+    <!-- Hero Section (JabarProv Style) -->
+    <!-- Hero Section (Redesigned) -->
+    <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900 py-20">
+        <!-- Full Screen Background Carousel -->
+        <div class="absolute inset-0 z-0" x-data="{ activeSlide: 0, totalSlides: 3 }"
+            x-init="setInterval(() => { activeSlide = activeSlide === (totalSlides - 1) ? 0 : activeSlide + 1 }, 5000)">
 
-        <!-- Content -->
-        <div class="relative z-10 px-4 mx-auto max-w-screen-xl text-center py-32 lg:py-48">
-            <span
-                class="inline-block py-1 px-3 rounded-full bg-blue-800/50 border border-blue-400/30 text-blue-200 text-sm font-medium mb-6 backdrop-blur-sm">
-                Selamat Datang di Portal Resmi Dinas
-            </span>
-            <h1
-                class="mb-6 text-4xl font-extrabold tracking-tight leading-tight text-white md:text-5xl lg:text-7xl drop-shadow-lg">
-                Melayani dengan <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Hati</span>,<br>
-                Membangun <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-200">Negeri</span>
-            </h1>
-            <p
-                class="mb-10 text-lg font-normal text-blue-100 lg:text-xl sm:px-16 lg:px-48 max-w-4xl mx-auto leading-relaxed">
-                Wujud nyata transparansi dan akuntabilitas pemerintah daerah. Akses layanan publik, informasi terkini,
-                dan data statistik dalam satu genggaman.
-            </p>
-            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                <a href="#services"
-                    class="inline-flex justify-center items-center py-4 px-8 text-lg font-bold text-center text-dinas-primary rounded-full bg-white hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
-                    Layanan Kami
-                    <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </a>
-                <a href="#news"
-                    class="inline-flex justify-center items-center py-4 px-8 text-lg font-bold text-center text-white rounded-full border-2 border-white/30 bg-white/10 hover:bg-white/20 focus:ring-4 focus:ring-gray-400 backdrop-blur-sm transition-all transform hover:-translate-y-0.5">
-                    Berita Terkini
-                </a>
+            <!-- Slide 1 -->
+            <div x-show="activeSlide === 0" x-transition:enter="transition ease-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                    alt="Hero Slide 1" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60"></div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div x-show="activeSlide === 1" x-transition:enter="transition ease-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                    alt="Hero Slide 2" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60"></div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div x-show="activeSlide === 2" x-transition:enter="transition ease-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                    alt="Hero Slide 3" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60"></div>
             </div>
         </div>
 
-        <!-- Shape Divider -->
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180 z-20">
-            <svg class="relative block w-[calc(100%+1.3px)] h-[60px] md:h-[100px]" data-name="Layer 1"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                    class="fill-gray-50 dark:fill-gray-900"></path>
-            </svg>
+        <!-- Centered Content -->
+        <div
+            class="relative z-10 px-4 mx-auto max-w-screen-xl text-center w-full flex flex-col items-center justify-center h-full">
+
+            <!-- Logo (Image Only) -->
+            <div class="mb-8 transform hover:scale-105 transition-transform duration-500">
+                @if(isset($profil) && $profil->logo_tanpa_text)
+                    <img src="{{ asset('storage/' . $profil->logo_tanpa_text) }}" alt="Logo Dinas"
+                        class="h-24 md:h-32 w-auto drop-shadow-2xl">
+                @else
+                    <!-- Fallback SVG Logo if no image -->
+                    <div class="bg-white/10 p-4 rounded-full backdrop-blur-sm border border-white/20 shadow-2xl">
+                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                            </path>
+                        </svg>
+                    </div>
+                @endif
+            </div>
+
+            <!-- Title & Subtitle -->
+            <div class="max-w-4xl mx-auto space-y-4 mb-12">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg leading-tight uppercase"
+                    x-data x-intersect="$el.classList.add('animate-fade-in-up')">
+                    {{ $profil->nama_dinas ?? 'DINAS PEMERINTAHAN' }}
+                </h1>
+                <p class="text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto drop-shadow-md" x-data
+                    x-intersect="$el.classList.add('animate-fade-in-up', 'delay-200')">
+                    {{ $profil->sub_title ?? 'Melayani dengan Sepenuh Hati untuk Kemajuan Daerah' }}
+                </p>
+            </div>
+
+            <!-- Search & Actions Container -->
+            <div class="w-full max-w-3xl mx-auto space-y-8 animate-fade-in-up delay-300">
+                <!-- Modern Search Bar -->
+                <form action="{{ route('articles.search') }}" method="GET" class="relative group">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-6 pointer-events-none">
+                        <svg class="w-6 h-6 text-gray-400 group-focus-within:text-dinas-primary transition-colors"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <input type="search" name="q"
+                        class="block w-full p-5 pl-16 text-lg text-gray-900 border-none rounded-full bg-white/95 focus:bg-white focus:ring-4 focus:ring-blue-500/50 shadow-2xl placeholder-gray-500 backdrop-blur-sm transition-all duration-300 transform group-hover:scale-[1.01]"
+                        placeholder="Cari layanan, berita, atau informasi..." required>
+                    <button type="submit"
+                        class="absolute right-2.5 bottom-2.5 bg-dinas-primary hover:bg-blue-700 text-white font-medium rounded-full text-base px-8 py-3 transition-all shadow-lg hover:shadow-blue-500/30">
+                        Cari
+                    </button>
+                </form>
+
+                <!-- Quick Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="#services"
+                        class="px-8 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-medium backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                            </path>
+                        </svg>
+                        Layanan Kami
+                    </a>
+                    <a href="#footer"
+                        class="px-8 py-3 bg-dinas-secondary hover:bg-amber-700 text-white rounded-full font-medium shadow-lg hover:shadow-amber-500/40 transition-all duration-300 hover:-translate-y-1 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        Hubungi Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+            <a href="#services" class="text-white/70 hover:text-white transition-colors duration-300">
+                <svg class="w-8 h-8 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
         </div>
     </section>
 
@@ -64,45 +135,16 @@
                 <p class="text-gray-500 sm:text-xl dark:text-gray-400">Kami menghadirkan inovasi layanan digital untuk
                     kemudahan dan kenyamanan masyarakat.</p>
             </div>
-            <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:space-y-0">
-                <!-- Service 1 -->
+            <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:space-y-0">
+                <!-- Service 1: Pendaftaran Koperasi -->
                 <div
-                    class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
+                    class="group p-6 bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
                     <div
                         class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
                     <div
-                        class="flex justify-center items-center mb-6 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg shadow-blue-500/30 text-white">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3
-                        class="mb-3 text-2xl font-bold text-gray-900 dark:text-white group-hover:text-dinas-primary transition-colors">
-                        Perizinan Online</h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4 leading-relaxed">Ajukan perizinan usaha (SIUP, TDP)
-                        dan IMB secara online. Pantau status pengajuan real-time.</p>
-                    <a href="#"
-                        class="inline-flex items-center text-dinas-primary font-semibold hover:text-blue-800 transition-colors">
-                        Akses Layanan <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </a>
-                </div>
-                <!-- Service 2 -->
-                <div
-                    class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-green-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-                    <div
-                        class="flex justify-center items-center mb-6 w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-700 shadow-lg shadow-green-500/30 text-white">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        class="flex justify-center items-center mb-4 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg shadow-blue-500/30 text-white transform group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
@@ -110,47 +152,119 @@
                         </svg>
                     </div>
                     <h3
-                        class="mb-3 text-2xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">
-                        Kependudukan</h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4 leading-relaxed">Layanan administrasi kependudukan
-                        (KTP-el, KK, Akta) yang cepat, tepat, dan bebas pungli.</p>
-                    <a href="#"
-                        class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition-colors">
-                        Akses Layanan <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </a>
+                        class="mb-2 text-xl font-bold text-gray-900 dark:text-white group-hover:text-dinas-primary transition-colors">
+                        Pendaftaran Koperasi</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm leading-relaxed">Layanan pendirian,
+                        perubahan anggaran dasar, dan pembubaran koperasi secara online.</p>
                 </div>
-                <!-- Service 3 -->
+
+                <!-- Service 2: NIB OSS -->
                 <div
-                    class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
+                    class="group p-6 bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
                     <div
-                        class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-purple-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-green-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
                     <div
-                        class="flex justify-center items-center mb-6 w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-700 shadow-lg shadow-purple-500/30 text-white">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        class="flex justify-center items-center mb-4 w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-700 shadow-lg shadow-green-500/30 text-white transform group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                             </path>
                         </svg>
                     </div>
                     <h3
-                        class="mb-3 text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">
-                        Data & Statistik</h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4 leading-relaxed">Pusat data daerah yang
-                        terintegrasi. Akses data statistik sektoral untuk kebutuhan riset.</p>
-                    <a href="#"
-                        class="inline-flex items-center text-purple-600 font-semibold hover:text-purple-800 transition-colors">
-                        Akses Layanan <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="mb-2 text-xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">
+                        NIB OSS</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm leading-relaxed">Fasilitasi pembuatan Nomor
+                        Induk Berusaha (NIB) melalui sistem OSS RBA.</p>
+                </div>
+
+                <!-- Service 3: Pelatihan Digital -->
+                <div
+                    class="group p-6 bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-purple-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="flex justify-center items-center mb-4 w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-700 shadow-lg shadow-purple-500/30 text-white transform group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
                         </svg>
-                    </a>
+                    </div>
+                    <h3
+                        class="mb-2 text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">
+                        Pelatihan Digital</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm leading-relaxed">Program pelatihan pemasaran
+                        digital dan manajemen usaha bagi UMKM.</p>
+                </div>
+
+                <!-- Service 4: Bantuan Modal -->
+                <div
+                    class="group p-6 bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="flex justify-center items-center mb-4 w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-700 shadow-lg shadow-amber-500/30 text-white transform group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3
+                        class="mb-2 text-xl font-bold text-gray-900 dark:text-white group-hover:text-amber-600 transition-colors">
+                        Bantuan Modal</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm leading-relaxed">Informasi dan fasilitasi
+                        akses permodalan KUR dan hibah kompetitif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sambutan Kepala Dinas Section -->
+    <section class="bg-white dark:bg-gray-800 py-20 relative overflow-hidden">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            <div class="grid gap-8 lg:grid-cols-2 items-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-dinas-primary/10 rounded-3xl transform rotate-3"></div>
+                    <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
+                        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Kepala Dinas">
+                    <div
+                        class="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">Dr. H. Nama Kepala Dinas, M.Si</h4>
+                        <p class="text-dinas-primary font-medium">Kepala Dinas</p>
+                    </div>
+                </div>
+                <div class="lg:pl-10">
+                    <span class="text-dinas-primary font-bold tracking-wider uppercase text-sm mb-2 block">Sambutan
+                        Kepala Dinas</span>
+                    <h2 class="mb-6 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                        Berkomitmen Melayani Masyarakat dengan Integritas
+                    </h2>
+                    <p class="mb-6 text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
+                        "Selamat datang di website resmi Dinas Koperasi, Usaha Mikro, Perindustrian, dan Perdagangan.
+                        Kami hadir untuk memberikan pelayanan terbaik, transparan, dan akuntabel bagi seluruh
+                        masyarakat. Melalui platform digital ini, kami berharap dapat mempercepat akses informasi dan
+                        layanan publik, serta mendorong pertumbuhan ekonomi daerah melalui pemberdayaan UMKM dan
+                        Koperasi."
+                    </p>
+                    <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+                        <a href="#"
+                            class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-full bg-dinas-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                            Profil Lengkap
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -380,23 +494,90 @@
                 <p class="mt-4 text-lg text-blue-200">Dedikasi kami untuk pembangunan daerah yang berkelanjutan.</p>
             </div>
 
-            <dl class="grid max-w-screen-md gap-8 mx-auto text-white sm:grid-cols-3">
+            <dl class="grid max-w-screen-md gap-8 mx-auto text-white sm:grid-cols-3" x-data="{
+                    counters: [
+                        { current: 0, target: 150, label: 'Koperasi Aktif' },
+                        { current: 0, target: 5000, label: 'UMKM Terdaftar' },
+                        { current: 0, target: 10000000, label: 'Nilai Perdagangan', prefix: 'Rp ' }
+                    ],
+                    startCounting() {
+                        this.counters.forEach(counter => {
+                            let duration = 2000;
+                            let stepTime = 20;
+                            let steps = duration / stepTime;
+                            let increment = counter.target / steps;
+                            let timer = setInterval(() => {
+                                counter.current += increment;
+                                if (counter.current >= counter.target) {
+                                    counter.current = counter.target;
+                                    clearInterval(timer);
+                                }
+                            }, stepTime);
+                        });
+                    }
+                }" x-init="setTimeout(() => startCounting(), 500)">
                 <div
-                    class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10">
-                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary">98%</dt>
-                    <dd class="font-light text-blue-100">Kepuasan Masyarakat</dd>
+                    class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10 transform hover:scale-105 transition-transform">
+                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary"
+                        x-text="Math.floor(counters[0].current) + '+'"></dt>
+                    <dd class="font-light text-blue-100">Koperasi Aktif</dd>
                 </div>
                 <div
-                    class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10">
-                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary">100+</dt>
-                    <dd class="font-light text-blue-100">Proyek Selesai</dd>
+                    class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10 transform hover:scale-105 transition-transform">
+                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary"
+                        x-text="Math.floor(counters[1].current).toLocaleString('id-ID') + '+'"></dt>
+                    <dd class="font-light text-blue-100">UMKM Terdaftar</dd>
                 </div>
                 <div
-                    class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10">
-                    <dt class="mb-2 text-4xl md:text-5xl font-extrabold text-dinas-secondary">24/7</dt>
-                    <dd class="font-light text-blue-100">Layanan Online</dd>
+                    class="flex flex-col items-center justify-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10 transform hover:scale-105 transition-transform">
+                    <dt class="mb-2 text-2xl md:text-3xl font-extrabold text-dinas-secondary"
+                        x-text="'Rp ' + (Math.floor(counters[2].current)/1000000).toFixed(0) + 'M+'"></dt>
+                    <dd class="font-light text-blue-100">Nilai Perdagangan</dd>
                 </div>
             </dl>
+        </div>
+    </section>
+
+    <!-- Mitra Strategis Section -->
+    <section class="bg-gray-50 dark:bg-gray-900 py-16">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+            <div class="text-center mb-12">
+                <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mitra Strategis</h2>
+                <p class="text-gray-500 dark:text-gray-400">Berkolaborasi untuk kemajuan ekonomi daerah.</p>
+            </div>
+            <div
+                class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
+                <a href="#"
+                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
+                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Kemenkop+UKM" alt="Kemenkop UKM"
+                        class="h-12 object-contain">
+                </a>
+                <a href="#"
+                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
+                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Kemendag" alt="Kemendag"
+                        class="h-12 object-contain">
+                </a>
+                <a href="#"
+                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
+                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Kemenperin" alt="Kemenperin"
+                        class="h-12 object-contain">
+                </a>
+                <a href="#"
+                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
+                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Bank+Daerah" alt="Bank Daerah"
+                        class="h-12 object-contain">
+                </a>
+                <a href="#"
+                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
+                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Dekranasda" alt="Dekranasda"
+                        class="h-12 object-contain">
+                </a>
+                <a href="#"
+                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
+                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=KADIN" alt="KADIN"
+                        class="h-12 object-contain">
+                </a>
+            </div>
         </div>
     </section>
 </x-public-layout>
