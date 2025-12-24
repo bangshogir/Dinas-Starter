@@ -51,8 +51,8 @@
                     <li>
                         <a href="{{ route('admin.dashboard') }}"
                             class="menu-item group {{ request()->routeIs('admin.dashboard') ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <x-heroicon-o-squares-2x2
-                                class="w-6 h-6 {{ request()->routeIs('admin.dashboard') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
+                            <i
+                                class="fa-solid fa-table-cells-large text-xl {{ request()->routeIs('admin.dashboard') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Dashboard
@@ -65,8 +65,8 @@
                     <li>
                         <a href="{{ route('admin.profil-dinas') }}"
                             class="menu-item group {{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <x-heroicon-o-building-office-2
-                                class="w-6 h-6 {{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
+                            <i
+                                class="fa-solid fa-building text-xl {{ request()->routeIs('admin.profil-dinas*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Profil Dinas
@@ -79,8 +79,8 @@
                     <li>
                         <a href="{{ route('admin.market-prices.index') }}"
                             class="menu-item group {{ request()->routeIs('admin.market-prices*') ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <x-heroicon-o-currency-dollar
-                                class="w-6 h-6 {{ request()->routeIs('admin.market-prices*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
+                            <i
+                                class="fa-solid fa-hand-holding-dollar text-xl {{ request()->routeIs('admin.market-prices*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Harga Pasar
@@ -94,8 +94,8 @@
                         <a href="#"
                             class="menu-item group {{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-active' : 'menu-item-inactive' }}"
                             @click.prevent="selected = (selected === 'Articles' ? '' : 'Articles')">
-                            <x-heroicon-o-newspaper
-                                class="w-6 h-6 {{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}" />
+                            <i
+                                class="fa-solid fa-newspaper text-xl {{ request()->routeIs('admin.articles*') || request()->routeIs('admin.article-categories*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Berita & Artikel

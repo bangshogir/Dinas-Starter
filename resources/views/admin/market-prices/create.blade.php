@@ -20,7 +20,7 @@
 
         <a href="{{ route('admin.market-prices.index') }}"
             class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] sm:w-auto">
-            <x-heroicon-o-arrow-left class="w-5 h-5" />
+            <i class="fa-solid fa-arrow-left w-5 h-5"></i>
             Kembali
         </a>
     </div>
@@ -84,7 +84,7 @@
 
                     <button type="submit"
                         class="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-medium text-white shadow-theme-xs hover:bg-brand-600">
-                        <x-heroicon-o-check class="w-5 h-5" />
+                        <i class="fa-solid fa-check w-5 h-5"></i>
                         Simpan Data
                     </button>
                 </div>

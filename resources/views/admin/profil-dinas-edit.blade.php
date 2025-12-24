@@ -208,6 +208,65 @@
                 </div>
             </div>
 
+            <!-- Informasi Kepala Dinas -->
+            <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+                <div class="px-5 py-4 sm:px-6 sm:py-5">
+                    <h3 class="text-base font-medium text-gray-800 dark:text-white/90">
+                        Informasi Kepala Dinas
+                    </h3>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                        Data ini akan ditampilkan pada halaman beranda
+                    </p>
+                </div>
+                <div class="space-y-6 border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800">
+                    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                        <!-- Nama Kepala Dinas -->
+                        <div class="lg:col-span-2">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                                Nama Kepala Dinas
+                            </label>
+                            <input type="text" name="kepala_dinas_nama"
+                                value="{{ old('kepala_dinas_nama', $profil->kepala_dinas_nama ?? '') }}"
+                                placeholder="Misal: Dr. H. Nama Kadis, M.Si"
+                                class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30" />
+                            @error('kepala_dinas_nama')
+                                <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Foto Kepala Dinas -->
+                        <div class="lg:col-span-1">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                                Foto Kepala Dinas
+                            </label>
+                            <input type="file" name="kepala_dinas_foto"
+                                class="focus:border-ring-brand-300 shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:text-white/90 dark:file:border-gray-800 dark:file:bg-white/[0.03] dark:file:text-gray-400 dark:placeholder:text-gray-400" />
+                            @if($profil && $profil->kepala_dinas_foto)
+                                <div class="mt-3 p-4 border border-gray-200 rounded-lg dark:border-gray-800 inline-block">
+                                    <img src="{{ asset('storage/' . $profil->kepala_dinas_foto) }}" alt="Foto Kepala Dinas"
+                                        class="h-40 w-auto object-cover rounded-lg">
+                                </div>
+                            @endif
+                            @error('kepala_dinas_foto')
+                                <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Sambutan -->
+                        <div class="lg:col-span-2">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                                Kata Sambutan
+                            </label>
+                            <textarea name="kepala_dinas_sambutan" rows="5" placeholder="Tuliskan kata sambutan singkat..."
+                                class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30">{{ old('kepala_dinas_sambutan', $profil->kepala_dinas_sambutan ?? '') }}</textarea>
+                            @error('kepala_dinas_sambutan')
+                                <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Actions -->
             <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
                 <a href="{{ route('admin.profil-dinas') }}"

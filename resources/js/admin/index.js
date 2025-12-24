@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.css';
 import "jsvectormap/dist/jsvectormap.min.css";
 import "flatpickr/dist/flatpickr.min.css";
 import "dropzone/dist/dropzone.css";

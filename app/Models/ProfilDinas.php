@@ -17,6 +17,9 @@ class ProfilDinas extends Model
         'social_media_links',
         'logo_tanpa_text',
         'logo_dengan_text',
+        'kepala_dinas_nama',
+        'kepala_dinas_foto',
+        'kepala_dinas_sambutan',
     ];
 
     protected $casts = [

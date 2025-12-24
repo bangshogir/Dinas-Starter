@@ -233,12 +233,20 @@
             <div class="grid gap-8 lg:grid-cols-2 items-center">
                 <div class="relative">
                     <div class="absolute inset-0 bg-dinas-primary/10 rounded-3xl transform rotate-3"></div>
-                    <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
-                        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                        alt="Kepala Dinas">
+                    @if(isset($profil) && $profil->kepala_dinas_foto)
+                        <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
+                            src="{{ asset('storage/' . $profil->kepala_dinas_foto) }}" alt="Kepala Dinas">
+                    @else
+                        <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
+                            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="Kepala Dinas">
+                    @endif
+
                     <div
                         class="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">Dr. H. Nama Kepala Dinas, M.Si</h4>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">
+                            {{ $profil->kepala_dinas_nama ?? 'Dr. H. Nama Kepala Dinas, M.Si' }}
+                        </h4>
                         <p class="text-dinas-primary font-medium">Kepala Dinas</p>
                     </div>
                 </div>
@@ -248,12 +256,8 @@
                     <h2 class="mb-6 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                         Berkomitmen Melayani Masyarakat dengan Integritas
                     </h2>
-                    <p class="mb-6 text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
-                        "Selamat datang di website resmi Dinas Koperasi, Usaha Mikro, Perindustrian, dan Perdagangan.
-                        Kami hadir untuk memberikan pelayanan terbaik, transparan, dan akuntabel bagi seluruh
-                        masyarakat. Melalui platform digital ini, kami berharap dapat mempercepat akses informasi dan
-                        layanan publik, serta mendorong pertumbuhan ekonomi daerah melalui pemberdayaan UMKM dan
-                        Koperasi."
+                    <p class="mb-6 text-gray-500 dark:text-gray-400 text-lg leading-relaxed whitespace-pre-line">
+                        "{{ $profil->kepala_dinas_sambutan ?? 'Selamat datang di website resmi kami. Kami berkomitmen untuk memberikan pelayanan terbaik bagi masyarakat.' }}"
                     </p>
                     <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                         <a href="#"

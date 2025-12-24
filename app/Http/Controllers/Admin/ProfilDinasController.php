@@ -32,6 +32,9 @@ class ProfilDinasController extends Controller
             'social_media_links' => 'nullable|array',
             'logo_tanpa_text' => 'nullable|image|max:2048',
             'logo_dengan_text' => 'nullable|image|max:2048',
+            'kepala_dinas_nama' => 'nullable|string|max:255',
+            'kepala_dinas_foto' => 'nullable|image|max:2048',
+            'kepala_dinas_sambutan' => 'nullable|string',
         ]);
 
         $profil = ProfilDinas::first();
@@ -39,7 +42,7 @@ class ProfilDinasController extends Controller
             $profil = new ProfilDinas();
         }
 
-        $data = $request->except(['logo_tanpa_text', 'logo_dengan_text']);
+        $data = $request->except(['logo_tanpa_text', 'logo_dengan_text', 'kepala_dinas_foto']);
 
         if ($request->hasFile('logo_tanpa_text')) {
             if ($profil->logo_tanpa_text) {
@@ -53,6 +56,13 @@ class ProfilDinasController extends Controller
                 Storage::disk('public')->delete($profil->logo_dengan_text);
             }
             $data['logo_dengan_text'] = $request->file('logo_dengan_text')->store('logos', 'public');
+        }
+
+        if ($request->hasFile('kepala_dinas_foto')) {
+            if ($profil->kepala_dinas_foto) {
+                Storage::disk('public')->delete($profil->kepala_dinas_foto);
+            }
+            $data['kepala_dinas_foto'] = $request->file('kepala_dinas_foto')->store('kepala_dinas', 'public');
         }
 
         $profil->fill($data);

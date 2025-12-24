@@ -20,7 +20,7 @@
         <div class="flex gap-3">
             <a href="{{ route('admin.articles.index') }}"
                 class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] sm:w-auto">
-                <x-heroicon-o-arrow-left class="w-5 h-5" />
+                <i class="fa-solid fa-arrow-left w-5 h-5"></i>
                 Kembali
             </a>
         </div>
@@ -60,7 +60,7 @@
                             <button type="button" onclick="generateSlug()"
                                 class="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-gray-500 hover:bg-gray-200 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-colors"
                                 title="Generate slug dari judul">
-                                <x-heroicon-o-arrow-path class="w-5 h-5" />
+                                <i class="fa-solid fa-rotate w-5 h-5"></i>
                             </button>
                         </div>
                         <p class="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
@@ -118,7 +118,7 @@
                                 <option value="archived" {{ old('status', $article->status) == 'archived' ? 'selected' : '' }}>Archived</option>
                             </select>
                             <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2 pointer-events-none">
-                                <x-heroicon-o-chevron-down class="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                <i class="fa-solid fa-chevron-down w-5 h-5 text-gray-500 dark:text-gray-400"></i>
                             </span>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
 
                     <button type="submit"
                         class="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-medium text-white shadow-theme-xs hover:bg-brand-600">
-                        <x-heroicon-o-check class="w-5 h-5" />
+                        <i class="fa-solid fa-check w-5 h-5"></i>
                         Simpan Perubahan
                     </button>
                 </div>
@@ -167,7 +167,7 @@
                                 @endforeach
                             </select>
                             <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2 pointer-events-none">
-                                <x-heroicon-o-chevron-down class="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                <i class="fa-solid fa-chevron-down w-5 h-5 text-gray-500 dark:text-gray-400"></i>
                             </span>
                         </div>
                         @error('category_id')
