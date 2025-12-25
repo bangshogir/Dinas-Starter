@@ -315,7 +315,7 @@
           <span
             class="mr-3 h-11 w-11 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
             @if(auth()->user()->profile_photo_path)
-              <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="{{ auth()->user()->name }}"
+              <img src="{{ asset('assets/' . auth()->user()->profile_photo_path) }}" alt="{{ auth()->user()->name }}"
                 class="w-full h-full object-cover" />
             @else
               <span

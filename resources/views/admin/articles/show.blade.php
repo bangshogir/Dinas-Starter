@@ -84,7 +84,7 @@
                 <!-- Featured Image -->
                 @if($article->featured_image)
                     <div class="mb-6 overflow-hidden rounded-xl">
-                        <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}"
+                        <img src="{{ asset('assets/' . $article->featured_image) }}" alt="{{ $article->title }}"
                             class="w-full object-cover">
                     </div>
                 @endif

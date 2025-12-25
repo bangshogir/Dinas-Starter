@@ -47,8 +47,8 @@
         <div class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4">
             <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse group shrink-0">
                 @if(isset($profil) && $profil->logo_dengan_text)
-                    <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}"
-                        class="h-12 md:h-16 w-auto object-contain" alt="{{ $profil->nama_dinas }}">
+                    <img src="{{ asset('assets/' . $profil->logo_dengan_text) }}" class="h-12 md:h-16 w-auto object-contain"
+                        alt="{{ $profil->nama_dinas }}">
                 @else
                     <div class="bg-dinas-primary text-white p-1.5 rounded-lg group-hover:bg-blue-600 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -139,8 +139,8 @@
                 <div class="mb-8 md:mb-0 max-w-sm">
                     <a href="{{ url('/') }}" class="flex items-center mb-4">
                         @if(isset($profil) && $profil->logo_dengan_text)
-                            <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}"
-                                class="h-16 w-auto object-contain" alt="{{ $profil->nama_dinas }}">
+                            <img src="{{ asset('assets/' . $profil->logo_dengan_text) }}" class="h-16 w-auto object-contain"
+                                alt="{{ $profil->nama_dinas }}">
                         @else
                             <div class="bg-dinas-primary text-white p-1.5 rounded-lg mr-3">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"

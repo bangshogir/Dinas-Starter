@@ -173,7 +173,7 @@
                                 <div class="flex items-center gap-3">
                                     <div class="h-10 w-10 overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800">
                                         @if($article->featured_image)
-                                            <img src="{{ asset('storage/' . $article->featured_image) }}"
+                                            <img src="{{ asset('assets/' . $article->featured_image) }}"
                                                 alt="{{ $article->title }}" class="h-full w-full object-cover" />
                                         @else
                                             <div class="flex h-full w-full items-center justify-center text-gray-400 dark:text-gray-500">

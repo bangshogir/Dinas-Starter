@@ -29,7 +29,7 @@ new #[Layout('layouts.auth')] class extends Component {
             $profil = \App\Models\ProfilDinas::first();
         @endphp
         <div class="flex justify-center mb-6 lg:hidden">
-            <img src="{{ $profil && $profil->logo_tanpa_text ? asset('storage/' . $profil->logo_tanpa_text) : asset('images/logo/logo-icon.svg') }}"
+            <img src="{{ $profil && $profil->logo_tanpa_text ? asset('assets/' . $profil->logo_tanpa_text) : asset('images/logo/logo-icon.svg') }}"
                 alt="Logo" class="h-16 w-auto" />
         </div>
 

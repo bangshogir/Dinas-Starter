@@ -20,7 +20,7 @@
                         <!-- Featured Image -->
                         @if($article->featured_image)
                             <div class="relative h-[400px] w-full overflow-hidden">
-                                <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}"
+                                <img src="{{ asset('assets/' . $article->featured_image) }}" alt="{{ $article->title }}"
                                     class="h-full w-full object-cover">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                                 <div class="absolute bottom-6 left-6 right-6">

@@ -56,7 +56,7 @@
                         @php
                             $profil = \App\Models\ProfilDinas::first();
                         @endphp
-                        <img src="{{ $profil && $profil->logo_tanpa_text ? asset('storage/' . $profil->logo_tanpa_text) : asset('images/logo/auth-logo.svg') }}"
+                        <img src="{{ $profil && $profil->logo_tanpa_text ? asset('assets/' . $profil->logo_tanpa_text) : asset('images/logo/auth-logo.svg') }}"
                             alt="Logo" style="max-height: 100px; width: auto;" />
                     </a>
                     <div class="text-center mt-2">

@@ -44,7 +44,7 @@
             <!-- Logo (Image Only) -->
             <div class="mb-8 transform hover:scale-105 transition-transform duration-500">
                 @if(isset($profil) && $profil->logo_tanpa_text)
-                    <img src="{{ asset('storage/' . $profil->logo_tanpa_text) }}" alt="Logo Dinas"
+                    <img src="{{ asset('assets/' . $profil->logo_tanpa_text) }}" alt="Logo Dinas"
                         class="h-24 md:h-32 w-auto drop-shadow-2xl">
                 @else
                     <!-- Fallback SVG Logo if no image -->
@@ -235,7 +235,7 @@
                     <div class="absolute inset-0 bg-dinas-primary/10 rounded-3xl transform rotate-3"></div>
                     @if(isset($profil) && $profil->kepala_dinas_foto)
                         <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
-                            src="{{ asset('storage/' . $profil->kepala_dinas_foto) }}" alt="Kepala Dinas">
+                            src="{{ asset('assets/' . $profil->kepala_dinas_foto) }}" alt="Kepala Dinas">
                     @else
                         <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
                             src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
@@ -369,7 +369,7 @@
                         <!-- Image Placeholder (Dynamic if available) -->
                         <div class="h-48 bg-gray-200 dark:bg-gray-700 relative overflow-hidden group">
                             @if($article->featured_image)
-                                <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}"
+                                <img src="{{ asset('assets/' . $article->featured_image) }}" alt="{{ $article->title }}"
                                     class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                             @else
                                 <div

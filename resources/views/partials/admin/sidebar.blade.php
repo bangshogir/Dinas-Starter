@@ -10,7 +10,7 @@
             {{-- Logo dengan text (saat sidebar expanded) --}}
             <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
                 @if($profil && $profil->logo_dengan_text)
-                    <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}" alt="{{ $profil->nama_dinas ?? 'Logo' }}"
+                    <img src="{{ asset('assets/' . $profil->logo_dengan_text) }}" alt="{{ $profil->nama_dinas ?? 'Logo' }}"
                         class="h-16 object-contain" />
                 @else
                     <img class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" />
@@ -20,7 +20,7 @@
 
             {{-- Logo tanpa text / icon (saat sidebar collapsed) --}}
             <img class="logo-icon h-10 object-contain" :class="sidebarToggle ? 'lg:block' : 'hidden'"
-                src="{{ $profil && $profil->logo_tanpa_text ? asset('storage/' . $profil->logo_tanpa_text) : asset('images/logo/logo-icon.svg') }}"
+                src="{{ $profil && $profil->logo_tanpa_text ? asset('assets/' . $profil->logo_tanpa_text) : asset('images/logo/logo-icon.svg') }}"
                 alt="{{ $profil->nama_dinas ?? 'Logo' }}" />
         </a>
     </div>

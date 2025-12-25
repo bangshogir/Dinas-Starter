@@ -204,7 +204,7 @@
                                 Gambar Saat Ini
                             </label>
                             <div class="relative overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800">
-                                <img src="{{ asset('storage/' . $article->featured_image) }}" alt="Featured Image" class="w-full object-cover">
+                                <img src="{{ asset('assets/' . $article->featured_image) }}" alt="Featured Image" class="w-full object-cover">
                             </div>
                         </div>
                     @endif

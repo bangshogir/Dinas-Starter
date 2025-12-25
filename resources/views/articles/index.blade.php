@@ -33,7 +33,7 @@
                                     <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow border border-gray-100 dark:bg-gray-800 dark:border-gray-700 flex flex-col h-full">
                                         <a href="{{ route('articles.show', $article->slug) }}" class="block shrink-0 h-48 overflow-hidden relative group">
                                             @if($article->featured_image)
-                                                <img src="{{ asset('storage/' . $article->featured_image) }}"
+                                                <img src="{{ asset('assets/' . $article->featured_image) }}"
                                                     alt="{{ $article->title }}"
                                                     class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                                             @else

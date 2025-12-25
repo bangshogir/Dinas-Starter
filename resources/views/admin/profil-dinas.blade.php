@@ -105,7 +105,7 @@
                                     @if($profil->kepala_dinas_foto)
                                         <div
                                             class="shrink-0 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
-                                            <img src="{{ asset('storage/' . $profil->kepala_dinas_foto) }}" alt="Foto Kepala Dinas"
+                                            <img src="{{ asset('assets/' . $profil->kepala_dinas_foto) }}" alt="Foto Kepala Dinas"
                                                 class="h-32 w-auto object-cover">
                                         </div>
                                     @endif
@@ -202,7 +202,7 @@
                                     </p>
                                     @if($profil->logo_tanpa_text)
                                         <div class="mt-3 p-4 border border-gray-200 rounded-lg dark:border-gray-800 inline-block">
-                                            <img src="{{ asset('storage/' . $profil->logo_tanpa_text) }}" alt="Logo Tanpa Text"
+                                            <img src="{{ asset('assets/' . $profil->logo_tanpa_text) }}" alt="Logo Tanpa Text"
                                                 class="h-20 w-auto">
                                         </div>
                                     @else
@@ -216,7 +216,7 @@
                                     </p>
                                     @if($profil->logo_dengan_text)
                                         <div class="mt-3 p-4 border border-gray-200 rounded-lg dark:border-gray-800 inline-block">
-                                            <img src="{{ asset('storage/' . $profil->logo_dengan_text) }}" alt="Logo Dengan Text"
+                                            <img src="{{ asset('assets/' . $profil->logo_dengan_text) }}" alt="Logo Dengan Text"
                                                 class="h-20 w-auto">
                                         </div>
                                     @else

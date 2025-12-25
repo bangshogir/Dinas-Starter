@@ -100,7 +100,7 @@
                                 <div class="md:w-1/3 shrink-0 relative overflow-hidden h-48 md:h-auto group">
                                     <a href="{{ route('articles.show', $article->slug) }}" class="block w-full h-full">
                                         @if($article->featured_image)
-                                            <img src="{{ asset('storage/' . $article->featured_image) }}"
+                                            <img src="{{ asset('assets/' . $article->featured_image) }}"
                                                 alt="{{ $article->title }}"
                                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                                         @else

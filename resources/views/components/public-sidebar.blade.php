@@ -30,7 +30,7 @@
                 <div
                     class="absolute -bottom-10 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white bg-white dark:border-gray-800 dark:bg-gray-800 overflow-hidden shadow-md">
                     @if($profil->kepala_dinas_foto)
-                        <img src="{{ asset('storage/' . $profil->kepala_dinas_foto) }}" alt="Foto Kepala Dinas"
+                        <img src="{{ asset('assets/' . $profil->kepala_dinas_foto) }}" alt="Foto Kepala Dinas"
                             class="h-full w-full object-cover" />
                     @else
                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
