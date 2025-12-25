@@ -106,20 +106,20 @@
                             aria-current="page">Beranda</a>
                     </li>
                     <li>
-                        <a href="#services"
+                        <a href="{{ url('/#services') }}"
                             class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Layanan</a>
                     </li>
                     <li>
-                        <a href="#prices"
+                        <a href="{{ route('market-prices.index') }}"
                             class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Harga
                             Pasar</a>
                     </li>
                     <li>
-                        <a href="#news"
+                        <a href="{{ route('articles.index') }}"
                             class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Berita</a>
                     </li>
                     <li>
-                        <a href="#stats"
+                        <a href="{{ url('/#stats') }}"
                             class="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-dinas-primary md:p-0 md:dark:hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors">Data</a>
                     </li>
                 </ul>
@@ -235,33 +235,66 @@
                     All Rights Reserved.
                 </span>
                 <div class="flex mt-4 sm:justify-center sm:mt-0 space-x-5">
-                    <a href="#" class="text-gray-400 hover:text-dinas-primary dark:hover:text-white transition-colors">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 8 19">
-                            <path fill-rule="evenodd"
-                                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="sr-only">Facebook page</span>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 dark:hover:text-white transition-colors">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 17">
-                            <path fill-rule="evenodd"
-                                d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="sr-only">Twitter page</span>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-pink-600 dark:hover:text-white transition-colors">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.41 2.045c.636-.247 1.363-.416 2.427-.465C8.901 1.534 9.256 1.534 12.315 2zm-.031 1.816c-2.665 0-2.977.012-4.032.06-.971.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.886-.344 1.857-.048 1.055-.06 1.37-.06 4.041v.08c0 2.597.012 2.917.06 3.963.045.971.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.886.3-1.857-.344-1.02-.047-1.336-.06-3.963-.06-2.596 0-2.917.012-3.963.06zm1.842 3.763a4.406 4.406 0 11-4.406 4.406 4.407 4.407 0 014.406-4.406zm0 1.816a2.59 2.59 0 102.59 2.59 2.59 2.59 0 00-2.59-2.59zm4.856-5.042a1.08 1.08 0 11-1.08 1.08 1.08 1.08 0 011.08-1.08z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="sr-only">Instagram page</span>
-                    </a>
+                    @if(isset($profil) && !empty($profil->social_media_links))
+                        {{-- Facebook --}}
+                        @if(isset($profil->social_media_links['facebook']) && $profil->social_media_links['facebook'])
+                            <a href="{{ $profil->social_media_links['facebook'] }}" target="_blank"
+                                class="text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 transition-colors">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                        @endif
+
+                        {{-- Twitter / X --}}
+                        @if(isset($profil->social_media_links['twitter']) && $profil->social_media_links['twitter'])
+                            <a href="{{ $profil->social_media_links['twitter'] }}" target="_blank"
+                                class="text-gray-400 hover:text-black dark:hover:text-white transition-colors">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M22 4.01c-1 .22-2 .5-3 .5 1.1-6.71 1.1-6.71 1.1-6.71-.46 1.75-1 3.25-1 3.25-.8 3.51-1 3.51-1 3.51C12 4.41 12 4.41 12 4.41c-3.14 1.53-4.48 4.48-7.86 3v1C4.14 7.41 3 4 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                                        clip-rule="evenodd" />
+                                    <!-- Use standardized Twitter Bird path for 24x24 -->
+                                    <path
+                                        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                                </svg>
+                                <span class="sr-only">Twitter</span>
+                            </a>
+                        @endif
+
+                        {{-- Instagram --}}
+                        @if(isset($profil->social_media_links['instagram']) && $profil->social_media_links['instagram'])
+                            <a href="{{ $profil->social_media_links['instagram'] }}" target="_blank"
+                                class="text-gray-400 hover:text-pink-600 dark:hover:text-pink-500 transition-colors">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.59 10.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                        @endif
+
+                        {{-- YouTube --}}
+                        @if(isset($profil->social_media_links['youtube']) && $profil->social_media_links['youtube'])
+                            <a href="{{ $profil->social_media_links['youtube'] }}" target="_blank"
+                                class="text-gray-400 hover:text-red-600 dark:hover:text-red-500 transition-colors">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="sr-only">YouTube</span>
+                            </a>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

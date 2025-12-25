@@ -1,229 +1,144 @@
-@extends('layouts.app')
-
-@section('title', 'Pencarian Artikel: ' . $query)
-
-@section('content')
-<div class="container-xxl flex-grow-1 container-p-y">
-    <!-- Breadcrumb -->
-    <div class="row mb-3">
-        <div class="col-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('welcome') }}">Beranda</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('articles.index') }}">Artikel</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        Pencarian
-                    </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Search Header -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card bg-primary text-white">
-                <div class="card-body text-center py-4">
-                    <h1 class="mb-3">
-                        <i class="ti ti-search me-2"></i>
-                        Hasil Pencarian
-                    </h1>
-                    <p class="lead mb-0">
-                        Menampilkan {{ $articles->total() }} hasil untuk query: <strong>"{{ $query }}"</strong>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Search Form -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <form method="GET" action="{{ route('articles.search') }}" class="row g-3">
-                        <div class="col-md-10">
-                            <input type="text" name="q" class="form-control"
-                                   placeholder="Cari artikel..." value="{{ $query }}">
+<x-public-layout>
+    <div class="relative bg-gray-50 dark:bg-gray-900 pt-32 pb-20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Main Content (8 cols) -->
+                <main class="lg:col-span-8">
+                    <!-- Page Header -->
+                    <div class="mb-8">
+                        <!-- Breadcrumb -->
+                        <div class="flex items-center text-sm text-gray-500 font-medium mb-4">
+                            <a href="{{ route('welcome') }}"
+                                class="hover:text-dinas-primary transition-colors">Beranda</a>
+                            <span class="mx-2 text-gray-400">/</span>
+                            <a href="{{ route('articles.index') }}"
+                                class="hover:text-dinas-primary transition-colors">Artikel</a>
+                            <span class="mx-2 text-gray-400">/</span>
+                            <span class="text-dinas-primary">Pencarian</span>
                         </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">
-                                <i class="ti ti-search"></i> Cari
+                        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-2">
+                            Pencarian: "<span class="text-dinas-primary">{{ $query }}</span>"
+                        </h1>
+                        <p class="text-gray-500 dark:text-gray-400">
+                            Menemukan {{ $articles->total() }} artikel untuk kata kunci tersebut.
+                        </p>
+                    </div>
+
+                    <!-- Search Fields (Mobile Only - Optional if Sidebar is hidden on mobile) -->
+                    <div class="lg:hidden mb-8">
+                        <form action="{{ route('articles.search') }}" method="GET" class="relative">
+                            <input type="search" name="q" value="{{ $query }}"
+                                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-dinas-primary focus:border-dinas-primary dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="Cari artikel lain...">
+                            <button type="submit"
+                                class="absolute right-2.5 bottom-2.5 bg-dinas-primary text-white font-medium rounded-lg text-sm px-4 py-2 hover:bg-blue-800 transition-colors">
+                                Cari
                             </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                        </form>
+                    </div>
 
-    <!-- Search Results -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="mb-0">
-                        <i class="ti ti-file-text text-primary me-2"></i>
-                        Hasil Pencarian ({{ $articles->count() }} dari {{ $articles->total() }})
-                    </h4>
-                </div>
-                <div class="card-body">
-                    @forelse($articles as $article)
-                        <div class="row mb-4">
-                            <div class="col-md-8">
-                                <div class="card">
-                                    <div class="row g-0">
+                    <!-- Articles List -->
+                    <div class="space-y-6">
+                        @forelse($articles as $article)
+                            <article
+                                class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-100 dark:bg-gray-800 dark:border-gray-700 flex flex-col md:flex-row h-full md:h-52">
+                                <!-- Image -->
+                                <div class="md:w-1/3 shrink-0 relative overflow-hidden h-48 md:h-auto">
+                                    <a href="{{ route('articles.show', $article->slug) }}" class="block w-full h-full">
                                         @if($article->featured_image)
-                                            <div class="col-md-4">
-                                                <img src="{{ asset('storage/' . $article->featured_image) }}"
-                                                     class="img-fluid rounded-start" alt="{{ $article->title }}"
-                                                     style="height: 200px; object-fit: cover; width: 100%;">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">
-                                                        <a href="{{ route('articles.show', $article) }}"
-                                                           class="text-decoration-none text-dark">
-                                                            {{ $article->title }}
-                                                        </a>
-                                                    </h5>
-                                                    @if($article->excerpt)
-                                                        <p class="card-text text-muted">{{ \Illuminate\Support\Str::limit($article->excerpt, 150) }}</p>
-                                                    @endif
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <small class="text-muted">
-                                                            <i class="ti ti-user"></i>
-                                                            {{ $article->author->name }} •
-                                                            <i class="ti ti-calendar"></i>
-                                                            {{ $article->published_at->format('d M Y') }}
-                                                        </small>
-                                                        <div>
-                                                            @if($article->category)
-                                                                <span class="badge bg-info me-1">{{ $article->category->name }}</span>
-                                                            @endif
-                                                            @if($article->is_featured)
-                                                                <span class="badge bg-warning"><i class="ti ti-star"></i></span>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <img src="{{ asset('storage/' . $article->featured_image) }}"
+                                                alt="{{ $article->title }}"
+                                                class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
                                         @else
-                                            <div class="col-12">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">
-                                                        <a href="{{ route('articles.show', $article) }}"
-                                                           class="text-decoration-none text-dark">
-                                                            {{ $article->title }}
-                                                        </a>
-                                                    </h5>
-                                                    @if($article->excerpt)
-                                                        <p class="card-text text-muted">{{ \Illuminate\Support\Str::limit($article->excerpt, 150) }}</p>
-                                                    @endif
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <small class="text-muted">
-                                                            <i class="ti ti-user"></i>
-                                                            {{ $article->author->name }} •
-                                                            <i class="ti ti-calendar"></i>
-                                                            {{ $article->published_at->format('d M Y') }}
-                                                        </small>
-                                                        <div>
-                                                            @if($article->category)
-                                                                <span class="badge bg-info me-1">{{ $article->category->name }}</span>
-                                                            @endif
-                                                            @if($article->is_featured)
-                                                                <span class="badge bg-warning"><i class="ti ti-star"></i></span>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div
+                                                class="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                                                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                                    </path>
+                                                </svg>
                                             </div>
                                         @endif
-                                    </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <!-- Sidebar -->
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h6 class="mb-0">Informasi Artikel</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <strong>Penulis:</strong><br>
-                                            <span>{{ $article->author->name }}</span>
+
+                                <!-- Content -->
+                                <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                    <div>
+                                        <div
+                                            class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-2 space-x-2">
+                                            @if($article->category)
+                                                <span
+                                                    class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full dark:bg-blue-900/30 dark:text-blue-300 font-medium">
+                                                    {{ $article->category->name }}
+                                                </span>
+                                            @endif
+                                            <span>{{ $article->published_at->format('d M Y') }}</span>
                                         </div>
-                                        <div class="mb-3">
-                                            <strong>Dipublikasikan:</strong><br>
-                                            <span>{{ $article->published_at->format('d F Y H:i') }}</span>
-                                        </div>
-                                        @if($article->category)
-                                            <div class="mb-3">
-                                                <strong>Kategori:</strong><br>
-                                                <span>{{ $article->category->name }}</span>
-                                            </div>
-                                        @endif
-                                        <div>
-                                            <a href="{{ route('articles.show', $article) }}" class="btn btn-primary btn-sm w-100">
-                                                <i class="ti ti-eye"></i> Baca Selengkapnya
+                                        <h2
+                                            class="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 hover:text-dinas-primary transition-colors">
+                                            <a href="{{ route('articles.show', $article->slug) }}">
+                                                {{ $article->title }}
                                             </a>
+                                        </h2>
+                                        <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-2 mb-4">
+                                            {{ $article->excerpt ?? Str::limit(strip_tags($article->content), 120) }}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between mt-auto">
+                                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                            <span class="font-medium mr-2">Oleh:</span>
+                                            {{ $article->author->name }}
                                         </div>
+                                        <a href="{{ route('articles.show', $article->slug) }}"
+                                            class="text-dinas-primary font-medium text-sm hover:underline inline-flex items-center">
+                                            Baca Selengkapnya
+                                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="text-center py-5">
-                            <i class="ti ti-search-off text-muted mb-3" style="font-size: 3rem;"></i>
-                            <h4 class="text-muted mb-3">Tidak Ada Hasil</h4>
-                            <p class="text-muted mb-4">
-                                Maaf, tidak ada artikel yang ditemukan untuk query "<strong>{{ $query }}</strong>".
-                            </p>
-                            <div class="mb-4">
-                                <h5 class="text-muted mb-3">Saran:</h5>
-                                <ul class="text-start text-muted">
-                                    <li class="mb-2">
-                                        <i class="ti ti-check text-success"></i>
-                                        Periksa ejaan kata kunci Anda
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="ti ti-check text-success"></i>
-                                        Gunakan kata kunci yang lebih umum
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="ti ti-check text-success"></i>
-                                        Coba dengan kata kunci yang berbeda
-                                    </li>
-                                    <li class="mb-0">
-                                        <i class="ti ti-check text-success"></i>
-                                        Kurangi filter atau kategori
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <a href="{{ route('articles.search') }}" class="btn btn-secondary me-2">
-                                    <i class="ti ti-arrow-left"></i> Kembali ke Pencarian
-                                </a>
-                                <a href="{{ route('articles.index') }}" class="btn btn-primary">
-                                    <i class="ti ti-list"></i> Lihat Semua Artikel
+                            </article>
+                        @empty
+                            <div
+                                class="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center dark:bg-gray-800 dark:border-gray-700">
+                                <div
+                                    class="bg-gray-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-gray-700">
+                                    <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Tidak ditemukan</h3>
+                                <p class="text-gray-500 dark:text-gray-400 mb-8 max-w-md mx-auto">
+                                    Maaf, kami tidak dapat menemukan artikel yang cocok dengan kata kunci
+                                    "<strong>{{ $query }}</strong>". Coba gunakan kata kunci lain.
+                                </p>
+                                <a href="{{ route('articles.index') }}"
+                                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-dinas-primary hover:bg-blue-800 transition-colors">
+                                    Lihat Semua Artikel
                                 </a>
                             </div>
-                        </div>
-                    @endforelse
+                        @endforelse
+                    </div>
 
                     <!-- Pagination -->
                     @if($articles->hasPages())
-                        <div class="d-flex justify-content-center mt-4">
+                        <div class="mt-12">
                             {{ $articles->links() }}
                         </div>
                     @endif
-                </div>
+                </main>
+
+                <!-- Sidebar (4 cols) -->
+                <aside class="lg:col-span-4">
+                    <x-public-sidebar />
+                </aside>
             </div>
         </div>
     </div>
-</div>
-@endsection
+</x-public-layout>

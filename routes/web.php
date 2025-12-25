@@ -12,7 +12,7 @@ Route::get('/', function () {
     $marketPrices = \App\Models\MarketPrice::all();
 
     return view('welcome', compact('latestArticles', 'marketPrices'));
-});
+})->name('welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -112,6 +112,9 @@ Route::prefix('articles')->name('articles.')->group(function () {
     Route::get('/category/{category:slug}', [App\Http\Controllers\Public\ArticleController::class, 'category'])->name('category');
     Route::get('/search', [App\Http\Controllers\Public\ArticleController::class, 'search'])->name('search');
 });
+
+// Public Market Prices
+Route::get('/market-prices', [App\Http\Controllers\Public\MarketPriceController::class, 'index'])->name('market-prices.index');
 
 // System Examples for Testing
 Route::group(['middleware' => ['auth', 'role:Super Admin']], function () {

@@ -92,7 +92,7 @@
 
                 <!-- Quick Action Buttons -->
                 <div class="flex flex-wrap items-center justify-center gap-4">
-                    <a href="#services"
+                    <a href="{{ url('/#services') }}"
                         class="px-8 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-medium backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -335,7 +335,8 @@
             </div>
 
             <div class="text-center">
-                <a href="#" class="text-dinas-primary hover:text-blue-800 font-medium inline-flex items-center">
+                <a href="{{ route('market-prices.index') }}"
+                    class="text-dinas-primary hover:text-blue-800 font-medium inline-flex items-center">
                     Lihat Semua Harga Komoditas
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -356,7 +357,7 @@
                     <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Informasi terbaru seputar kegiatan
                         dan kebijakan pemerintah.</p>
                 </div>
-                <a href="#"
+                <a href="{{ route('articles.index') }}"
                     class="hidden md:inline-flex items-center justify-center px-6 py-3 text-base font-medium text-center text-white bg-dinas-primary rounded-full hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
                     Lihat Semua Berita
                 </a>
@@ -443,7 +444,7 @@
                 @endforelse
             </div>
             <div class="mt-8 text-center md:hidden">
-                <a href="#"
+                <a href="{{ route('articles.index') }}"
                     class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-center text-white bg-dinas-primary rounded-full hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 w-full">
                     Lihat Semua Berita
                 </a>
