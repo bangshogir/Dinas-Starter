@@ -10,8 +10,10 @@ Route::get('/', function () {
         ->get();
 
     $marketPrices = \App\Models\MarketPrice::all();
+    $heroSlides = \App\Models\HeroSlide::where('is_active', true)->orderBy('order', 'asc')->get();
+    $products = \App\Models\Product::where('is_active', true)->latest()->take(4)->get();
 
-    return view('welcome', compact('latestArticles', 'marketPrices'));
+    return view('welcome', compact('latestArticles', 'marketPrices', 'heroSlides', 'products'));
 })->name('welcome');
 
 Route::view('dashboard', 'dashboard')
@@ -103,6 +105,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::put('market-prices/{marketPrice}', [App\Http\Controllers\Admin\MarketPriceController::class, 'update'])->name('market-prices.update');
         Route::delete('market-prices/{marketPrice}', [App\Http\Controllers\Admin\MarketPriceController::class, 'destroy'])->name('market-prices.destroy');
     });
+
+    // Hero Slides Routes
+    Route::middleware('permission:profil-dinas.update')->resource('hero-slides', App\Http\Controllers\Admin\HeroSlideController::class);
+
+    // Product Routes (UMKM)
+    Route::middleware('permission:profil-dinas.update')->resource('products', App\Http\Controllers\Admin\ProductController::class);
 });
 
 // Public Articles
@@ -115,6 +123,10 @@ Route::prefix('articles')->name('articles.')->group(function () {
 
 // Public Market Prices
 Route::get('/market-prices', [App\Http\Controllers\Public\MarketPriceController::class, 'index'])->name('market-prices.index');
+
+// Public Products
+Route::get('/products', [App\Http\Controllers\Public\ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{slug}', [App\Http\Controllers\Public\ProductController::class, 'show'])->name('products.show');
 
 // System Examples for Testing
 Route::group(['middleware' => ['auth', 'role:Super Admin']], function () {

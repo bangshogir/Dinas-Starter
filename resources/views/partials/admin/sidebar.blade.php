@@ -75,6 +75,20 @@
                     </li>
                     <!-- Menu Item Profil Dinas -->
 
+                    <!-- Menu Item Hero Slides -->
+                    <li>
+                        <a href="{{ route('admin.hero-slides.index') }}"
+                            class="menu-item group {{ request()->routeIs('admin.hero-slides*') ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <i
+                                class="fa-solid fa-images text-xl {{ request()->routeIs('admin.hero-slides*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
+
+                            <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
+                                Hero Slides
+                            </span>
+                        </a>
+                    </li>
+                    <!-- Menu Item Hero Slides -->
+
                     <!-- Menu Item Harga Pasar -->
                     <li>
                         <a href="{{ route('admin.market-prices.index') }}"
@@ -88,6 +102,20 @@
                         </a>
                     </li>
                     <!-- Menu Item Harga Pasar -->
+
+                    <!-- Menu Item Produk UMKM -->
+                    <li>
+                        <a href="{{ route('admin.products.index') }}"
+                            class="menu-item group {{ request()->routeIs('admin.products*') ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <i
+                                class="fa-solid fa-store text-xl {{ request()->routeIs('admin.products*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
+
+                            <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
+                                Produk UMKM
+                            </span>
+                        </a>
+                    </li>
+                    <!-- Menu Item Produk UMKM -->
 
                     <!-- Menu Item Berita & Artikel -->
                     <li>

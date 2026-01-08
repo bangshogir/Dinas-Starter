@@ -3,38 +3,53 @@
     <!-- Hero Section (Redesigned) -->
     <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900 py-20">
         <!-- Full Screen Background Carousel -->
-        <div class="absolute inset-0 z-0" x-data="{ activeSlide: 0, totalSlides: 3 }"
+        <div class="absolute inset-0 z-0"
+            x-data="{ activeSlide: 0, totalSlides: {{ $heroSlides->count() > 0 ? $heroSlides->count() : 3 }} }"
             x-init="setInterval(() => { activeSlide = activeSlide === (totalSlides - 1) ? 0 : activeSlide + 1 }, 5000)">
 
-            <!-- Slide 1 -->
-            <div x-show="activeSlide === 0" x-transition:enter="transition ease-out duration-1000"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-                    alt="Hero Slide 1" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/60"></div>
-            </div>
+            @if($heroSlides->count() > 0)
+                @foreach($heroSlides as $index => $slide)
+                    <div x-show="activeSlide === {{ $index }}" x-transition:enter="transition ease-out duration-1000"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
+                        <img src="{{ asset('assets/' . $slide->image_path) }}" alt="{{ $slide->title ?? 'Hero Slide' }}"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/60"></div>
+                    </div>
+                @endforeach
+            @else
+                <!-- Fallback Static Slides -->
+                <!-- Slide 1 -->
+                <div x-show="activeSlide === 0" x-transition:enter="transition ease-out duration-1000"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                        alt="Hero Slide 1" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60"></div>
+                </div>
 
-            <!-- Slide 2 -->
-            <div x-show="activeSlide === 1" x-transition:enter="transition ease-out duration-1000"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-                    alt="Hero Slide 2" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/60"></div>
-            </div>
+                <!-- Slide 2 -->
+                <div x-show="activeSlide === 1" x-transition:enter="transition ease-out duration-1000"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
+                    <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                        alt="Hero Slide 2" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60"></div>
+                </div>
 
-            <!-- Slide 3 -->
-            <div x-show="activeSlide === 2" x-transition:enter="transition ease-out duration-1000"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-                    alt="Hero Slide 3" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/60"></div>
-            </div>
+                <!-- Slide 3 -->
+                <div x-show="activeSlide === 2" x-transition:enter="transition ease-out duration-1000"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0" class="absolute inset-0 w-full h-full">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                        alt="Hero Slide 3" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60"></div>
+                </div>
+            @endif
         </div>
 
         <!-- Centered Content -->
@@ -228,47 +243,64 @@
     </section>
 
     <!-- Sambutan Kepala Dinas Section -->
-    <section class="bg-white dark:bg-gray-800 py-20 relative overflow-hidden">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div class="grid gap-8 lg:grid-cols-2 items-center">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-dinas-primary/10 rounded-3xl transform rotate-3"></div>
-                    @if(isset($profil) && $profil->kepala_dinas_foto)
-                        <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
-                            src="{{ asset('assets/' . $profil->kepala_dinas_foto) }}" alt="Kepala Dinas">
-                    @else
-                        <img class="relative rounded-3xl shadow-xl w-full object-cover h-[500px]"
-                            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                            alt="Kepala Dinas">
-                    @endif
-
+    <!-- Sambutan Kepala Dinas Section (Whitehall Style) -->
+    <section class="bg-gray-50 dark:bg-gray-800 py-24 relative overflow-hidden">
+        <div class="py-12 px-4 mx-auto max-w-screen-xl lg:px-6">
+            <div class="grid gap-16 lg:grid-cols-5 items-center">
+                <!-- Left Column: Text -->
+                <div class="order-2 lg:order-1 lg:col-span-3">
                     <div
-                        class="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">
-                            {{ $profil->kepala_dinas_nama ?? 'Dr. H. Nama Kepala Dinas, M.Si' }}
-                        </h4>
-                        <p class="text-dinas-primary font-medium">Kepala Dinas</p>
+                        class="flex items-center space-x-2 mb-6 text-dinas-primary font-bold tracking-wider uppercase text-sm">
+                        <span class="w-12 h-0.5 bg-dinas-primary"></span>
+                        <span>Sambutan Kepala Dinas</span>
+                    </div>
+
+                    <h2
+                        class="mb-8 text-4xl lg:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white leading-tight">
+                        Melayani dengan Hati, <br>
+                        <span class="text-dinas-primary">Membangun Negeri</span>
+                    </h2>
+
+                    <div class="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                        <p>
+                            "Selamat datang di portal resmi kami. Di era digital ini, kami berkomitmen untuk
+                            menghadirkan
+                            pelayanan publik yang transparan, akuntabel, dan mudah diakses oleh seluruh lapisan
+                            masyarakat."
+                        </p>
+                        <p>
+                            {{ $profil->kepala_dinas_sambutan ?? 'Kami terus berinovasi untuk meningkatkan kualitas layanan dan mendorong pertumbuhan ekonomi daerah melalui pemberdayaan UMKM dan stabilitas harga pasar.' }}
+                        </p>
+                    </div>
+
+                    <div class="mt-10 border-t border-gray-200 dark:border-gray-700 pt-8">
+                        <div>
+                            <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                                {{ $profil->kepala_dinas_nama ?? 'Dr. H. Nama Kepala Dinas, M.Si' }}
+                            </h4>
+                            <p class="text-dinas-primary font-medium tracking-wide">Kepala Dinas</p>
+                        </div>
                     </div>
                 </div>
-                <div class="lg:pl-10">
-                    <span class="text-dinas-primary font-bold tracking-wider uppercase text-sm mb-2 block">Sambutan
-                        Kepala Dinas</span>
-                    <h2 class="mb-6 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-                        Berkomitmen Melayani Masyarakat dengan Integritas
-                    </h2>
-                    <p class="mb-6 text-gray-500 dark:text-gray-400 text-lg leading-relaxed whitespace-pre-line">
-                        "{{ $profil->kepala_dinas_sambutan ?? 'Selamat datang di website resmi kami. Kami berkomitmen untuk memberikan pelayanan terbaik bagi masyarakat.' }}"
-                    </p>
-                    <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-                        <a href="#"
-                            class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-full bg-dinas-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-                            Profil Lengkap
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+
+                <!-- Right Column: Image -->
+                <div class="order-1 lg:order-2 relative lg:col-span-2">
+                    <!-- Decorator Back Blob -->
+                    <div
+                        class="absolute -right-20 -top-20 w-72 h-72 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50">
                     </div>
+                    <div
+                        class="absolute -left-10 -bottom-10 w-48 h-48 bg-amber-100 dark:bg-amber-900/30 rounded-full blur-3xl opacity-50">
+                    </div>
+
+                    @if(isset($profil) && $profil->kepala_dinas_foto)
+                        <img class="relative z-10 w-full aspect-[3/4] object-cover object-top rounded-2xl shadow-2xl"
+                            src="{{ asset('assets/' . $profil->kepala_dinas_foto) }}" alt="Kepala Dinas">
+                    @else
+                        <img class="relative z-10 w-full aspect-[3/4] object-cover object-top rounded-2xl shadow-2xl"
+                            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Kepala Dinas">
+                    @endif
                 </div>
             </div>
         </div>
@@ -342,6 +374,101 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Products Section -->
+    <section id="products" class="bg-blue-50 dark:bg-gray-900 py-20">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div class="max-w-screen-sm">
+                    <span class="text-dinas-primary font-bold tracking-wider uppercase text-sm">Etalase UMKM</span>
+                    <h2
+                        class="mt-2 mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                        Produk Unggulan Daerah</h2>
+                    <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Dukung UMKM lokal dengan membeli
+                        produk-produk berkualitas.</p>
+                </div>
+                <a href="{{ route('products.index') }}"
+                    class="hidden md:inline-flex items-center justify-center px-6 py-3 text-base font-medium text-center text-white bg-dinas-secondary rounded-full hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 dark:focus:ring-amber-900 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                    Lihat Semua Produk
+                </a>
+            </div>
+
+            <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2 lg:grid-cols-4">
+                @forelse($products as $product)
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group border border-gray-100 dark:border-gray-700 flex flex-col h-full transform hover:-translate-y-1">
+                        <!-- Image Container -->
+                        <div class="relative h-56">
+                            <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                src="{{ asset('assets/' . $product->image) }}" alt="{{ $product->name }}">
+
+                            <!-- Overlay Gradient -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+
+                            <!-- Floating Badge -->
+                            <div class="absolute top-4 left-4">
+                                <span
+                                    class="bg-white/90 backdrop-blur-sm text-xs font-bold text-dinas-primary px-3 py-1 rounded-full shadow-sm">
+                                    <i class="fa-solid fa-store mr-1"></i> {{ $product->seller_name }}
+                                </span>
+                            </div>
+
+                            <!-- Action on Hover -->
+                            <div
+                                class="absolute bottom-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                <span
+                                    class="bg-dinas-primary text-white p-3 rounded-full shadow-lg flex items-center justify-center w-10 h-10">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-5 flex-1 flex flex-col">
+                            <h3
+                                class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 leading-snug group-hover:text-dinas-primary transition-colors">
+                                <a href="{{ route('products.show', $product->slug) }}">
+                                    {{ $product->name }}
+                                </a>
+                            </h3>
+
+                            <div
+                                class="mt-auto pt-3 flex items-end justify-between border-t border-gray-50 dark:border-gray-700">
+                                <div>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Harga</p>
+                                    <p class="text-xl font-extrabold text-dinas-secondary">
+                                        Rp {{ number_format($product->price, 0, ',', '.') }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <a href="{{ route('products.show', $product->slug) }}"
+                                        class="text-xs font-semibold text-gray-400 group-hover:text-dinas-primary transition-colors">
+                                        Lihat Detail
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-span-4 text-center py-8">
+                        <p class="text-gray-500 dark:text-gray-400">Belum ada produk yang ditampilkan.</p>
+                    </div>
+                @endforelse
+            </div>
+
+            <div class="text-center md:hidden">
+                <a href="{{ route('products.index') }}"
+                    class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-center text-white bg-dinas-secondary rounded-full hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 dark:focus:ring-amber-900">
+                    Lihat Semua Produk
                 </a>
             </div>
         </div>
