@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth', 'permission:users.create']], function () 
 
 // Admin Dashboard - Admin and Super Admin
 Route::group(['middleware' => ['auth', 'permission:users.read']], function () {
-    Route::view('admin', 'admin.dashboard')->name('admin.dashboard');
+    Route::get('admin', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
     Route::view('admin/users-list', 'admin.users-list')->name('admin.users.list');
 });
 
