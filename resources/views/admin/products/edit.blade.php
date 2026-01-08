@@ -11,9 +11,9 @@
             </h2>
             <nav>
                 <ol class="flex items-center gap-2">
-                    <li><a class="font-medium" href="{{ route('admin.dashboard') }}">Dashboard /</a></li>
-                    <li><a class="font-medium" href="{{ route('admin.products.index') }}">Produk /</a></li>
-                    <li class="font-medium text-primary">Edit</li>
+                    <li><a class="font-medium text-gray-600 dark:text-gray-400" href="{{ route('admin.dashboard') }}">Dashboard /</a></li>
+                    <li><a class="font-medium text-gray-600 dark:text-gray-400" href="{{ route('admin.products.index') }}">Produk /</a></li>
+                    <li class="font-medium text-brand-500">Edit</li>
                 </ol>
             </nav>
         </div>
@@ -36,6 +36,29 @@
                     <h3 class="mb-5 text-lg font-semibold text-gray-800 dark:text-white/90">Gambar Produk</h3>
                     
                     <div class="mb-4">
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                            Kategori Produk
+                        </label>
+                        <div class="relative">
+                            <select name="product_category_id"
+                                class="shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 pr-11 text-sm text-gray-800 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90">
+                                <option value="">-- Pilih Kategori (Opsional) --</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('product_category_id', $product->product_category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <span class="absolute right-4 top-1/2 z-10 -translate-y-1/2 pointer-events-none">
+                                <i class="fa-solid fa-chevron-down w-4 h-4 text-gray-500 dark:text-gray-400"></i>
+                            </span>
+                        </div>
+                        @error('product_category_id')
+                            <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+            <div class="mb-4">
                         <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                             Ganti Gambar (Opsional)
                         </label>

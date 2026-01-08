@@ -24,12 +24,18 @@
                         </div>
 
                         <div class="p-8 lg:p-10">
-                            <!-- Seller Badge -->
+                            <!-- Seller & Category Badge -->
                             <div class="flex items-center gap-2 mb-4">
                                 <span
                                     class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full dark:bg-blue-900 dark:text-blue-300 uppercase tracking-wide">
                                     <i class="fa-solid fa-store mr-1.5"></i> {{ $product->seller_name }}
                                 </span>
+                                @if($product->category)
+                                    <a href="{{ route('products.index', ['category' => $product->category->slug]) }}"
+                                        class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full dark:bg-amber-900 dark:text-amber-300 uppercase tracking-wide hover:bg-amber-200 transition-colors">
+                                        {{ $product->category->name }}
+                                    </a>
+                                @endif
                             </div>
 
                             <h1
@@ -49,9 +55,10 @@
 
                                 <a href="https://wa.me/{{ $product->seller_phone }}?text={{ urlencode('Halo ' . $product->seller_name . ', saya tertarik dengan produk ' . $product->name . ' yang ada di website Dinas.') }}"
                                     target="_blank"
-                                    class="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1">
-                                    <i class="fa-brands fa-whatsapp text-xl"></i>
-                                    Beli via WhatsApp
+                                    class="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 px-8 rounded-full transition-all shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1 group">
+                                    <i
+                                        class="fa-brands fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i>
+                                    <span>Beli via WhatsApp</span>
                                 </a>
                             </div>
 
@@ -67,8 +74,8 @@
 
                 <!-- Sidebar (4 cols) -->
                 <aside class="lg:col-span-4 space-y-8">
-                    <!-- Standard Public Sidebar with Popular Products -->
-                    <x-public-sidebar :popularProducts="$popularProducts"
+                    <!-- Standard Public Sidebar with Popular Products & Categories -->
+                    <x-public-sidebar :popularProducts="$popularProducts" :productCategories="$productCategories ?? []"
                         :categories="\App\Models\ArticleCategory::withCount('articles')->get()"
                         :recentArticles="\App\Models\Article::latest()->take(3)->get()" />
                 </aside>

@@ -110,7 +110,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::middleware('permission:profil-dinas.update')->resource('hero-slides', App\Http\Controllers\Admin\HeroSlideController::class);
 
     // Product Routes (UMKM)
-    Route::middleware('permission:profil-dinas.update')->resource('products', App\Http\Controllers\Admin\ProductController::class);
+    Route::middleware('permission:profil-dinas.update')->group(function () {
+        // Product Categories
+        Route::resource('product-categories', \App\Http\Controllers\Admin\ProductCategoryController::class);
+
+        // Products
+        Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+    });
 });
 
 // Public Articles

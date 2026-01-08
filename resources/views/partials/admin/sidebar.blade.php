@@ -75,20 +75,6 @@
                     </li>
                     <!-- Menu Item Profil Dinas -->
 
-                    <!-- Menu Item Hero Slides -->
-                    <li>
-                        <a href="{{ route('admin.hero-slides.index') }}"
-                            class="menu-item group {{ request()->routeIs('admin.hero-slides*') ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <i
-                                class="fa-solid fa-images text-xl {{ request()->routeIs('admin.hero-slides*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
-
-                            <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
-                                Hero Slides
-                            </span>
-                        </a>
-                    </li>
-                    <!-- Menu Item Hero Slides -->
-
                     <!-- Menu Item Harga Pasar -->
                     <li>
                         <a href="{{ route('admin.market-prices.index') }}"
@@ -105,15 +91,48 @@
 
                     <!-- Menu Item Produk UMKM -->
                     <li>
-                        <a href="{{ route('admin.products.index') }}"
-                            class="menu-item group {{ request()->routeIs('admin.products*') ? 'menu-item-active' : 'menu-item-inactive' }}">
+                        <a href="#"
+                            class="menu-item group {{ (request()->routeIs('admin.products*') || request()->routeIs('admin.product-categories*')) ? 'menu-item-active' : 'menu-item-inactive' }}"
+                            @click.prevent="selected = (selected === 'products' ? '' : 'products')">
                             <i
-                                class="fa-solid fa-store text-xl {{ request()->routeIs('admin.products*') ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
+                                class="fa-solid fa-store text-xl {{ (request()->routeIs('admin.products*') || request()->routeIs('admin.product-categories*')) ? 'menu-item-icon-active' : 'menu-item-icon-inactive' }}"></i>
 
                             <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
                                 Produk UMKM
                             </span>
+
+                            <svg class="menu-item-arrow w-5 h-5" :class="{ 'rotate-180': selected === 'products' }"
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
                         </a>
+
+                        <!-- Dropdown Menu Start -->
+                        <div class="translate transform overflow-hidden"
+                            :class="(selected === 'products') ? 'block' : 'hidden'">
+                            <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9"
+                                :class="sidebarToggle ? 'lg:hidden' : 'flex'">
+                                <li>
+                                    <a href="{{ route('admin.products.index') }}"
+                                        class="menu-dropdown-item group {{ request()->routeIs('admin.products.index') ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive' }}">
+                                        Daftar Produk
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.product-categories.index') }}"
+                                        class="menu-dropdown-item group {{ request()->routeIs('admin.product-categories*') ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive' }}">
+                                        Kategori Produk
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.products.create') }}"
+                                        class="menu-dropdown-item group {{ request()->routeIs('admin.products.create') ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive' }}">
+                                        Tambah Produk
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown Menu End -->
                     </li>
                     <!-- Menu Item Produk UMKM -->
 

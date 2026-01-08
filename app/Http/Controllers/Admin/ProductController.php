@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,38 +27,35 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');
+        $categories = ProductCategory::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
+            'product_category_id' => 'nullable|exists:product_categories,id',
+            'description' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'seller_name' => 'required|string|max:255',
             'seller_phone' => 'required|string|max:20',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'description' => 'nullable|string',
         ]);
 
-        $data = $request->except('image');
-
         // Generate Slug
-        $data['slug'] = Str::slug($request->name) . '-' . Str::random(5);
+        $data['slug'] = Str::slug($request->name);
+        $data['is_active'] = $request->has('is_active');
 
         // Normalize Phone Number (08 -> 628)
-        $phone = $data['seller_phone'];
-        if (Str::startsWith($phone, '08')) {
-            $phone = '62' . substr($phone, 1);
-        }
-        $data['seller_phone'] = $phone;
+        $data['seller_phone'] = $this->normalizePhoneNumber($request->seller_phone);
 
         // Handle Image Upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('products', $filename, 'public');
-            $data['image'] = 'products/' . $filename;
+            $file->storeAs('products', $filename, 'public'); // Simpan di storage/app/public/products
+            $data['image'] = 'products/' . $filename; // Path relatif untuk database
         }
 
         Product::create($data);
@@ -68,33 +66,27 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        $categories = ProductCategory::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, Product $product)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
+            'product_category_id' => 'nullable|exists:product_categories,id',
+            'description' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'seller_name' => 'required|string|max:255',
             'seller_phone' => 'required|string|max:20',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'description' => 'nullable|string',
         ]);
 
-        $data = $request->except('image');
-
         // Update Slug if name changed
-        if ($request->name !== $product->name) {
-            $data['slug'] = Str::slug($request->name) . '-' . Str::random(5);
-        }
+        $data['slug'] = Str::slug($request->name);
 
         // Normalize Phone
-        $phone = $data['seller_phone'];
-        if (Str::startsWith($phone, '08')) {
-            $phone = '62' . substr($phone, 1);
-        }
-        $data['seller_phone'] = $phone;
+        $data['seller_phone'] = $this->normalizePhoneNumber($request->seller_phone);
 
         // Handle Image Update
         if ($request->hasFile('image')) {
@@ -110,9 +102,7 @@ class ProductController extends Controller
         }
 
         // Handle Checkbox
-        if (!$request->has('is_active')) {
-            $data['is_active'] = 0;
-        }
+        $data['is_active'] = $request->has('is_active');
 
         $product->update($data);
 
@@ -130,5 +120,23 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index')
             ->with('success', 'Produk berhasil dihapus');
+    }
+
+    private function normalizePhoneNumber($phone)
+    {
+        // Hapus karakter non-digit
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        // Ubah 08... menjadi 628...
+        if (Str::startsWith($phone, '08')) {
+            $phone = '62' . substr($phone, 2);
+        }
+
+        // Jika tidak diawali 62, tambahkan 62 (asumsi user input 8...)
+        if (!Str::startsWith($phone, '62')) {
+            $phone = '62' . $phone;
+        }
+
+        return $phone;
     }
 }

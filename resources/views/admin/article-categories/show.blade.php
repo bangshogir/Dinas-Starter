@@ -10,9 +10,9 @@
             </h2>
             <nav>
                 <ol class="flex items-center gap-2">
-                    <li><a class="font-medium" href="{{ route('admin.dashboard') }}">Dashboard /</a></li>
-                    <li><a class="font-medium" href="{{ route('admin.article-categories.index') }}">Kategori /</a></li>
-                    <li class="font-medium text-primary">Detail</li>
+                    <li><a class="font-medium text-gray-600 dark:text-gray-400" href="{{ route('admin.dashboard') }}">Dashboard /</a></li>
+                    <li><a class="font-medium text-gray-600 dark:text-gray-400" href="{{ route('admin.article-categories.index') }}">Kategori /</a></li>
+                    <li class="font-medium text-brand-500">Detail</li>
                 </ol>
             </nav>
         </div>

@@ -1,4 +1,4 @@
-@props(['popularProducts' => null, 'categories' => [], 'recentArticles' => [], 'profil' => \App\Models\ProfilDinas::first(), 'marketPrices' => \App\Models\MarketPrice::latest()->get()])
+@props(['popularProducts' => null, 'categories' => [], 'productCategories' => [], 'recentArticles' => [], 'profil' => \App\Models\ProfilDinas::first(), 'marketPrices' => \App\Models\MarketPrice::latest()->get()])
 
 <div class="space-y-8 sticky top-24">
 
@@ -6,20 +6,20 @@
     <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg dark:bg-gray-800 dark:border-gray-700">
         <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white border-l-4 border-dinas-primary pl-3">Pencarian
         </h3>
-        <form action="{{ route('articles.search') }}" method="GET">
+        <form action="{{ route('articles.search') }}" method="GET" class="relative group">
             <div class="relative">
                 <input type="search" name="q"
-                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-brand-500 focus:border-brand-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-brand-500 dark:focus:border-brand-500"
+                    class="block w-full p-4 pl-12 text-sm text-gray-900 border border-gray-200 rounded-full bg-gray-50 focus:ring-4 focus:ring-blue-500/10 focus:border-dinas-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all duration-300"
                     placeholder="Cari artikel..." required>
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400 group-focus-within:text-dinas-primary transition-colors"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </div>
                 <button type="submit"
-                    class="absolute text-white bg-dinas-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 right-2.5 bottom-2.5 dark:focus:ring-blue-900 transition-colors">Cari</button>
+                    class="absolute text-white bg-dinas-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xs px-4 py-2 right-2 bottom-2 dark:focus:ring-blue-900 transition-all shadow-md hover:shadow-blue-500/30">Cari</button>
             </div>
         </form>
     </div>
@@ -98,51 +98,31 @@
         </div>
     @endif
 
-    <!-- Berita Terbaru Widget -->
-    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg dark:bg-gray-800 dark:border-gray-700">
-        <h3 class="mb-5 text-lg font-bold text-gray-900 dark:text-white border-l-4 border-dinas-primary pl-3">Berita
-            Terbaru</h3>
-        <div class="space-y-5">
-            @forelse($recentArticles as $article)
-                <div class="flex gap-4 group">
-                    <a href="{{ route('articles.show', $article->slug) }}"
-                        class="shrink-0 overflow-hidden rounded-lg h-20 w-20 relative">
-                        @if($article->featured_image)
-                            <img src="{{ asset('storage/' . $article->featured_image) }}"
-                                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                alt="{{ $article->title }}">
-                        @else
-                            <div class="h-full w-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                    </path>
-                                </svg>
-                            </div>
-                        @endif
-                    </a>
-                    <div class="flex flex-col justify-center">
-                        <h4
-                            class="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-dinas-primary transition-colors">
-                            <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                        </h4>
-                        <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center">
-                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                            {{ $article->published_at ? $article->published_at->format('d M Y') : 'Baru saja' }}
-                        </span>
-                    </div>
-                </div>
-            @empty
-                <p class="text-sm text-gray-500">Belum ada berita terbaru.</p>
-            @endforelse
+    <!-- Kategori Produk Widget -->
+    @if(isset($productCategories) && count($productCategories) > 0)
+        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white border-l-4 border-dinas-primary pl-3">Kategori
+                Produk
+            </h3>
+            <ul class="space-y-2">
+                @foreach($productCategories as $cat)
+                    <li>
+                        <a href="{{ route('products.index', ['category' => $cat->slug]) }}"
+                            class="flex items-center justify-between group p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <span
+                                class="text-gray-700 dark:text-gray-300 font-medium group-hover:text-dinas-primary transition-colors">{{ $cat->name }}</span>
+                            <span
+                                class="bg-gray-100 text-gray-600 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-gray-600 dark:text-gray-300 group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors">
+                                {{ $cat->products_count }}
+                            </span>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
-    </div>
+    @endif
 
-    <!-- Popular Products Widget (Optional) -->
+    <!-- Popular Products Widget -->
     @if(isset($popularProducts) && $popularProducts->count() > 0)
         <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg dark:bg-gray-800 dark:border-gray-700">
             <h3 class="mb-5 text-lg font-bold text-gray-900 dark:text-white border-l-4 border-dinas-primary pl-3">
@@ -184,26 +164,77 @@
             </div>
         </div>
     @endif
-    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg dark:bg-gray-800 dark:border-gray-700">
-        <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white border-l-4 border-dinas-primary pl-3">Kategori
-        </h3>
-        <ul class="space-y-2">
-            @forelse($categories as $category)
-                <li>
-                    <a href="{{ route('articles.category', $category->slug) }}"
-                        class="flex items-center justify-between group p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                        <span
-                            class="text-gray-700 dark:text-gray-300 font-medium group-hover:text-dinas-primary transition-colors">{{ $category->name }}</span>
-                        <span
-                            class="bg-gray-100 text-gray-600 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-gray-600 dark:text-gray-300 group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors">
-                            {{ $category->articles_count }}
-                        </span>
-                    </a>
-                </li>
-            @empty
-                <li class="text-sm text-gray-500">Belum ada kategori.</li>
-            @endforelse
-        </ul>
-    </div>
+
+    <!-- Berita Terbaru Widget -->
+    @if(isset($recentArticles) && count($recentArticles) > 0)
+        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="mb-5 text-lg font-bold text-gray-900 dark:text-white border-l-4 border-dinas-primary pl-3">Berita
+                Terbaru</h3>
+            <div class="space-y-5">
+                @forelse($recentArticles as $article)
+                    <div class="flex gap-4 group">
+                        <a href="{{ route('articles.show', $article->slug) }}"
+                            class="shrink-0 overflow-hidden rounded-lg h-20 w-20 relative">
+                            @if($article->featured_image)
+                                <img src="{{ asset('storage/' . $article->featured_image) }}"
+                                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                    alt="{{ $article->title }}">
+                            @else
+                                <div class="h-full w-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            @endif
+                        </a>
+                        <div class="flex flex-col justify-center">
+                            <h4
+                                class="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-dinas-primary transition-colors">
+                                <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
+                            </h4>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center">
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                {{ $article->published_at ? $article->published_at->format('d M Y') : 'Baru saja' }}
+                            </span>
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-sm text-gray-500">Belum ada berita terbaru.</p>
+                @endforelse
+            </div>
+        </div>
+    @endif
+
+    <!-- Kategori Berita Widget (Renamed) -->
+    @if(isset($categories) && count($categories) > 0)
+        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white border-l-4 border-dinas-primary pl-3">Kategori
+                Berita
+            </h3>
+            <ul class="space-y-2">
+                @forelse($categories as $category)
+                    <li>
+                        <a href="{{ route('articles.category', $category->slug) }}"
+                            class="flex items-center justify-between group p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <span
+                                class="text-gray-700 dark:text-gray-300 font-medium group-hover:text-dinas-primary transition-colors">{{ $category->name }}</span>
+                            <span
+                                class="bg-gray-100 text-gray-600 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-gray-600 dark:text-gray-300 group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors">
+                                {{ $category->articles_count }}
+                            </span>
+                        </a>
+                    </li>
+                @empty
+                    <li class="text-sm text-gray-500">Belum ada kategori.</li>
+                @endforelse
+            </ul>
+        </div>
+    @endif
 
 </div>
