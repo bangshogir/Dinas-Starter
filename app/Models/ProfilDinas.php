@@ -12,6 +12,7 @@ class ProfilDinas extends Model
         'nama_dinas',
         'sub_title',
         'alamat_kantor',
+        'maps_url',
         'nomor_telepon',
         'email',
         'social_media_links',

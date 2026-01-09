@@ -25,14 +25,7 @@
         </a>
     </div>
 
-    @if(session('success'))
-        <div class="mb-4 rounded-lg bg-success-50 px-6 py-4 text-success-800 dark:bg-success-500/15 dark:text-success-500">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-check-circle"></i>
-                <p class="text-sm font-medium">{{ session('success') }}</p>
-            </div>
-        </div>
-    @endif
+    @include('partials.admin.notifications')
 
     <!-- Table Container -->
     <div class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">

@@ -16,9 +16,9 @@ Route::get('/', function () {
     return view('welcome', compact('latestArticles', 'marketPrices', 'heroSlides', 'products'));
 })->name('welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('dashboard', function () {
+    return redirect()->route('admin.dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
@@ -122,10 +122,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 // Public Articles
 Route::prefix('articles')->name('articles.')->group(function () {
     Route::get('/', [App\Http\Controllers\Public\ArticleController::class, 'index'])->name('index');
-    Route::get('/{article:slug}', [App\Http\Controllers\Public\ArticleController::class, 'show'])->name('show');
-    Route::get('/category/{category:slug}', [App\Http\Controllers\Public\ArticleController::class, 'category'])->name('category');
     Route::get('/search', [App\Http\Controllers\Public\ArticleController::class, 'search'])->name('search');
+    Route::get('/category/{category:slug}', [App\Http\Controllers\Public\ArticleController::class, 'category'])->name('category');
+    Route::get('/{article:slug}', [App\Http\Controllers\Public\ArticleController::class, 'show'])->name('show');
 });
+
+// Global Search
+Route::get('/search', [App\Http\Controllers\Public\SearchController::class, 'index'])->name('search');
 
 // Public Market Prices
 Route::get('/market-prices', [App\Http\Controllers\Public\MarketPriceController::class, 'index'])->name('market-prices.index');

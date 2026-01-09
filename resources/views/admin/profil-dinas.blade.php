@@ -107,7 +107,7 @@
                                         <div
                                             class="shrink-0 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
                                             <img src="{{ asset('assets/' . $profil->kepala_dinas_foto) }}" alt="Foto Kepala Dinas"
-                                                class="h-32 w-auto object-cover">
+                                                class="h-20 w-auto object-cover">
                                         </div>
                                     @endif
                                     <div>

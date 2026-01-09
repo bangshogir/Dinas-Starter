@@ -70,6 +70,22 @@
                         @enderror
                     </div>
 
+                    <!-- Maps URL -->
+                    <div>
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                            Link Google Maps
+                        </label>
+                        <input type="url" name="maps_url" value="{{ old('maps_url', $profil->maps_url ?? '') }}"
+                            placeholder="https://maps.app.goo.gl/..."
+                            class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30" />
+                        <p class="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
+                            Tempelkan link Google Maps untuk menampilkan lokasi kantor di halaman beranda.
+                        </p>
+                        @error('maps_url')
+                            <p class="text-theme-xs text-error-500 mt-1.5">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- Nomor Telepon & Email -->
                     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
                         <div>
@@ -246,7 +262,7 @@
                             @if($profil && $profil->kepala_dinas_foto)
                                 <div class="mt-3 p-4 border border-gray-200 rounded-lg dark:border-gray-800 inline-block">
                                     <img src="{{ asset('assets/' . $profil->kepala_dinas_foto) }}" alt="Foto Kepala Dinas"
-                                        class="h-40 w-auto object-cover rounded-lg">
+                                        class="h-20 w-auto object-cover rounded-lg">
                                 </div>
                             @endif
                             @error('kepala_dinas_foto')

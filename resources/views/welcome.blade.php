@@ -88,7 +88,7 @@
             <!-- Search & Actions Container -->
             <div class="w-full max-w-3xl mx-auto space-y-8 animate-fade-in-up delay-300">
                 <!-- Modern Search Bar -->
-                <form action="{{ route('articles.search') }}" method="GET" class="relative group">
+                <form action="{{ route('search') }}" method="GET" class="relative group">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-6 pointer-events-none">
                         <svg class="w-6 h-6 text-gray-400 group-focus-within:text-dinas-primary transition-colors"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -638,46 +638,31 @@
         </div>
     </section>
 
-    <!-- Mitra Strategis Section -->
-    <section class="bg-gray-50 dark:bg-gray-900 py-16">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
-            <div class="text-center mb-12">
-                <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mitra Strategis</h2>
-                <p class="text-gray-500 dark:text-gray-400">Berkolaborasi untuk kemajuan ekonomi daerah.</p>
+    <!-- Lokasi Kantor Section -->
+    @if($profil && $profil->maps_url)
+        <section id="location" class="bg-gray-50 dark:bg-gray-900 py-16">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Lokasi Kantor</h2>
+                    <p class="text-gray-500 dark:text-gray-400">{{ $profil->alamat_kantor ?? 'Alamat Kantor Kami' }}</p>
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
+                    <iframe src="{{ $profil->maps_url }}" width="100%" height="450" style="border:0;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full">
+                    </iframe>
+                </div>
+                <div class="mt-6 text-center">
+                    <a href="{{ $profil->maps_url }}" target="_blank"
+                        class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-dinas-primary rounded-full hover:bg-blue-700 transition-colors shadow-lg">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        Buka di Google Maps
+                    </a>
+                </div>
             </div>
-            <div
-                class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
-                <a href="#"
-                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Kemenkop+UKM" alt="Kemenkop UKM"
-                        class="h-12 object-contain">
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Kemendag" alt="Kemendag"
-                        class="h-12 object-contain">
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Kemenperin" alt="Kemenperin"
-                        class="h-12 object-contain">
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Bank+Daerah" alt="Bank Daerah"
-                        class="h-12 object-contain">
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=Dekranasda" alt="Dekranasda"
-                        class="h-12 object-contain">
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                    <img src="https://placehold.co/150x60/e5e7eb/1f2937?text=KADIN" alt="KADIN"
-                        class="h-12 object-contain">
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
 </x-public-layout>
