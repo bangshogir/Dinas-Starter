@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::where('is_active', true);
+        $query = Product::with('category')->where('is_active', true);
 
         if ($request->has('q')) {
             $search = $request->q;

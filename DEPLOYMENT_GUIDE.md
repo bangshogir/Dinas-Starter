@@ -89,6 +89,13 @@ DB_PASSWORD=pass_db
 - Pilih database
 - Import file SQL yang sudah di-fix
 
+### 5.1 Jalankan SQL Tambahan (Performance Indexes)
+Setelah import, jalankan query berikut di tab SQL phpMyAdmin:
+```sql
+ALTER TABLE `products` ADD INDEX `products_is_active_index` (`is_active`);
+ALTER TABLE `products` ADD INDEX `products_product_category_id_index` (`product_category_id`);
+```
+
 ---
 
 ## Script Helper (Buat di public_html, hapus setelah selesai)
